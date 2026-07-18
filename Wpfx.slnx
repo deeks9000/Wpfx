@@ -9,5 +9,6 @@
   <Project Path="Demo_08_FluentTheme/Demo_08_FluentTheme.csproj" />
   <Project Path="Demo_09_SkiaChart/Demo_09_SkiaChart.csproj" />
   <Project Path="Demo_10_SkiaAnimation/Demo_10_SkiaAnimation.csproj" />
+  <Project Path="Demo_11_ControlTemplate/Demo_11_ControlTemplate.csproj" />
   <Project Path="Wpfx/Wpfx.csproj" />
 </Solution>

@@ -171,6 +171,16 @@ public static class Wpfx
         return gridSplitter;
     }
 
+    public static CornerRadius CornerRadiusX(double uniformRadius)
+    {
+        return new CornerRadius(uniformRadius);
+    }
+
+    public static CornerRadius CornerRadiusX(double topLeft, double topRight, double bottomRight, double bottomLeft)
+    {
+        return new CornerRadius(topLeft, topRight, bottomRight, bottomLeft);
+    }
+
     public static Thickness ThicknessX(double length)
     {
         return new Thickness(length);
@@ -181,12 +191,13 @@ public static class Wpfx
         return new Thickness(left, top, right, bottom);
     }
 
-    public static Brush? BrushFromStringX(string str)
+    public static Brush BrushFromStringX(string str)
     {
-        var obj = ColorConverter.ConvertFromString(str);
-        if (obj is Color color)
-            return new SolidColorBrush(color);
-        return null;
+        Color color = (Color)ColorConverter.ConvertFromString(str);
+        Brush brush = new SolidColorBrush(color);
+        if (brush.CanFreeze) 
+            brush.Freeze();
+        return brush;
     }
 
     public static Binding BindingX(string path, Action<Binding>? configure = null)
@@ -194,6 +205,12 @@ public static class Wpfx
         var binding = new Binding(path);
         configure?.Invoke(binding);
         return binding;
+    }
+
+    // For use inside ControlTemplates
+    public static TemplateBindingExtension TemplateBindingX(DependencyProperty property)
+    {
+        return new TemplateBindingExtension(property);
     }
 
     //------------------------------------------------------------
