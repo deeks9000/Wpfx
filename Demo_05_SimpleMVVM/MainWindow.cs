@@ -24,8 +24,8 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Auto));
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Star, 1));
+                x.AddRowDefinitionX(GridUnitType.Auto);
+                x.AddRowDefinitionX(GridUnitType.Star, 1);
             },
             children: [
                 BorderX(

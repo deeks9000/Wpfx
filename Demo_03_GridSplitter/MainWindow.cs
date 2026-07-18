@@ -19,18 +19,18 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.ColumnDefinitions.Add(ColumnDefinitionX(GridUnitType.Star, 1));
-                x.ColumnDefinitions.Add(ColumnDefinitionX(GridUnitType.Auto));
-                x.ColumnDefinitions.Add(ColumnDefinitionX(GridUnitType.Star, 1));
+                x.AddColumnDefinitionX(GridUnitType.Star, 1);
+                x.AddColumnDefinitionX(GridUnitType.Auto);
+                x.AddColumnDefinitionX(GridUnitType.Star, 1);
             },
             children: [
                 GridX(
                     configure: x => {
                         Grid.SetColumn(x, 0);
                         x.Background = Brushes.LightGreen;
-                        x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Star, 1));
-                        x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Auto));
-                        x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Star, 1));
+                        x.AddRowDefinitionX(GridUnitType.Star, 1);
+                        x.AddRowDefinitionX(GridUnitType.Auto);
+                        x.AddRowDefinitionX(GridUnitType.Star, 1);
                     },
                     children: [
                         BorderX(

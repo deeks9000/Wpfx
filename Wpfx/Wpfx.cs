@@ -64,6 +64,22 @@ public static class Wpfx
         };
     }
 
+    public static void AddRowDefinitionX(this Grid grid, GridUnitType type, double height = 1)
+    {
+        grid.RowDefinitions.Add(new RowDefinition
+        {
+            Height = GridLengthX(height, type)
+        });
+    }
+
+    public static void AddColumnDefinitionX(this Grid grid, GridUnitType type, double width = 1)
+    {
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+        {
+            Width = GridLengthX(width, type)
+        });
+    }
+
     public static StackPanel StackPanelX(Action<StackPanel>? configure = null, UIElement[]? children = null)
     {
         var stackPanel = new StackPanel();

@@ -31,9 +31,9 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Pixel, 100));
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Star, 1));
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Auto));
+                x.AddRowDefinitionX(GridUnitType.Pixel, 100);
+                x.AddRowDefinitionX(GridUnitType.Star, 1);
+                x.AddRowDefinitionX(GridUnitType.Auto);
             },
             children: [
                 BorderX(

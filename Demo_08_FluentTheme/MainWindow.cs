@@ -22,9 +22,9 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Pixel, 100));
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Star, 1));
-                x.RowDefinitions.Add(RowDefinitionX(GridUnitType.Pixel, 100));
+                x.AddRowDefinitionX(GridUnitType.Pixel, 100);
+                x.AddRowDefinitionX(GridUnitType.Star, 1);
+                x.AddRowDefinitionX(GridUnitType.Star, 1);
             },
             children: [
                 ButtonX(
@@ -76,6 +76,7 @@ public class MainWindow : Window
                 ),
                 TextBlockX(
                     configure: x => {
+                        Grid.SetRow(x, 2);
                         _txtInfo = x;
                         x.HorizontalAlignment = HorizontalAlignment.Center;
                         x.VerticalAlignment = VerticalAlignment.Center;

@@ -22,9 +22,9 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.ColumnDefinitions.Add(ColumnDefinitionX(GridUnitType.Star, 1));
-                x.ColumnDefinitions.Add(ColumnDefinitionX(GridUnitType.Star, 1));
-                x.ColumnDefinitions.Add(ColumnDefinitionX(GridUnitType.Star, 1));
+                x.AddColumnDefinitionX(GridUnitType.Star, 1);
+                x.AddColumnDefinitionX(GridUnitType.Star, 1);
+                x.AddColumnDefinitionX(GridUnitType.Star, 1);
             },
             children: [
                 BorderX(
