@@ -25,13 +25,7 @@ public class MainWindow : Window
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Width = 800;
         Height = 500;
-        Content = TextBlockX(
-            configure: x => {
-                x.HorizontalAlignment = HorizontalAlignment.Center;
-                x.VerticalAlignment = VerticalAlignment.Center;
-                x.Text = "Initialize...";
-            }
-        );
+        Content = BuildStartup();
 
         InitializeAnimation();
 
@@ -41,6 +35,17 @@ public class MainWindow : Window
             await Task.Delay(1000);
             Content = Build();
         };
+    }
+
+    private UIElement BuildStartup()
+    {
+        return TextBlockX(
+            configure: x => {
+                x.HorizontalAlignment = HorizontalAlignment.Center;
+                x.VerticalAlignment = VerticalAlignment.Center;                
+                x.Text = "Initialize...";
+            }
+        );
     }
 
     private UIElement Build()

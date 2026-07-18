@@ -35,8 +35,8 @@ public class MainWindow : Window
                         x.Background = BrushFromStringX("#88DDFF");                        
                         x.BorderThickness = ThicknessX(0);
 
-                        if (TryFindResource("ButtonControlTemplate") is ControlTemplate template)
-                            x.Template = template;
+                        if (TryFindResource("ButtonControlTemplate") is ControlTemplate btnTemplate)
+                            x.Template = btnTemplate;
 
                         x.MouseEnter += (s,e) => {
                             Mouse.OverrideCursor = Cursors.Hand;
@@ -70,8 +70,8 @@ public class MainWindow : Window
                         x.Background = BrushFromStringX("#88FFDD");
                         x.BorderThickness = ThicknessX(0,0,0,2);
 
-                        if (TryFindResource("LocalButtonControlTemplate") is ControlTemplate template)
-                            x.Template = template;
+                        if (TryFindResource("LocalButtonControlTemplate") is ControlTemplate btnTemplate)
+                            x.Template = btnTemplate;
 
                         x.MouseEnter += (s,e) => {
                             Mouse.OverrideCursor = Cursors.Hand;
@@ -93,7 +93,7 @@ public class MainWindow : Window
 
     public static ResourceDictionary BuildLocalResourceDictionary()
     {
-        var template = ControlTemplateX<Button>(
+        var btnTemplate = ControlTemplateX<Button>(
             visualTree: FrameworkElementFactoryX<Border>(
                 name: "PART_Border",
                 setters: [
@@ -135,9 +135,9 @@ public class MainWindow : Window
             ]
         );
 
-        var resDict = new ResourceDictionary();
-        resDict.Add("LocalButtonControlTemplate", template);
+        ResourceDictionary dict = new ResourceDictionary();
+        dict.Add("LocalButtonControlTemplate", btnTemplate);
 
-        return resDict;
+        return dict;
     }
 }

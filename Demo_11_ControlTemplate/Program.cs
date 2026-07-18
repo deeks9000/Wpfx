@@ -20,7 +20,7 @@ public static class Program
 
     public static ResourceDictionary BuildAppResourceDictionary()
     {
-        var template = ControlTemplateX<Button>(
+        var btnTemplate = ControlTemplateX<Button>(
             visualTree: FrameworkElementFactoryX<Border>(
                 name: "PART_Border",
                 setters: [
@@ -62,9 +62,9 @@ public static class Program
             ]
         );
 
-        var resDict = new ResourceDictionary();
-        resDict.Add("ButtonControlTemplate", template);
+        ResourceDictionary dict = new ResourceDictionary();
+        dict.Add("ButtonControlTemplate", btnTemplate);
 
-        return resDict;
+        return dict;
     }
 }

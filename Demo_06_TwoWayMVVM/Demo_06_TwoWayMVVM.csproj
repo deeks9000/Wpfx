@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wpfx\Wpfx.csproj" />
+    <ProjectReference Include="..\WpfxLib\WpfxLib.csproj" />
   </ItemGroup>
 
 </Project>
