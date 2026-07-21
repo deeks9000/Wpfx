@@ -14,7 +14,7 @@ WPFX is intentionally lightweight — the library fits in a single source file o
 
 Build familiar WPF controls and supporting types using `X` helper methods:
 
-| WPF type           | Static helper function     |
+| WPF type           | Static helper method       |
 | ------------------ | -------------------------- |
 | `StackPanel`       | `Wpfx.StackPanelX()`       |
 | `Grid`             | `Wpfx.GridX()`             |
