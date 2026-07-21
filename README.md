@@ -18,12 +18,12 @@ Build familiar WPF controls and supporting types using `X` helper methods:
 | ------------------ | -------------------------- |
 | `StackPanel`       | `Wpfx.StackPanelX()`       |
 | `Grid`             | `Wpfx.GridX()`             |
-| `CornerRadius`     | `Wpfx.CornerRadiusX()`     |
-| `Thickness`        | `Wpfx.ThicknessX()`        |
 | `Border`           | `Wpfx.BorderX()`           |
 | `Button`           | `Wpfx.ButtonX()`           |
 | `Slider`           | `Wpfx.SliderX()`           |
 | `TextBox`          | `Wpfx.TextBoxX()`          |
+| `Thickness`        | `Wpfx.ThicknessX()`        |
+| `CornerRadius`     | `Wpfx.CornerRadiusX()`     |
 
 ---
 
@@ -96,7 +96,7 @@ dotnet add package UserExtensions.Wpfx
 
 WPFX is intentionally lightweight.
 
-If you prefer not to take a package dependency, simply copy `Wpfx.cs` directly into your project. The library is contained in a single source file of fewer than 300 lines, making it easy to inspect, understand, and modify if desired.
+If you prefer not to take a package dependency, simply copy `Wpfx.cs` directly into your project. The library is contained in a single source file, making it easy to inspect and modify if desired.
 
 ### Global using
 
