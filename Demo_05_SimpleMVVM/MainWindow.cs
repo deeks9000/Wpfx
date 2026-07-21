@@ -33,39 +33,35 @@ public class MainWindow : Window
                         Grid.SetRow(x, 0);
                         x.Background = Brushes.LightGray;
                     },
-                    child: [
-                        ButtonX(
-                            configure: x => {
-                                x.Content = "Update message";
-                                x.Margin = ThicknessX(10);
-                                x.Padding = ThicknessX(10);
-                                x.HorizontalAlignment = HorizontalAlignment.Left;
-                                x.VerticalAlignment = VerticalAlignment.Center;
-                                x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.UpdateMessage)));
-                            }
-                        )
-                    ]
+                    child: ButtonX(
+                        configure: x => {
+                            x.Content = "Update message";
+                            x.Margin = ThicknessX(10);
+                            x.Padding = ThicknessX(10);
+                            x.HorizontalAlignment = HorizontalAlignment.Left;
+                            x.VerticalAlignment = VerticalAlignment.Center;
+                            x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.UpdateMessage)));
+                        }
+                    )                    
                 ),
                 BorderX(
                     configure: x => {
                         Grid.SetRow(x, 1);
                         x.Background = Brushes.LemonChiffon;
                     },
-                    child: [
-                        TextBoxX(
-                            configure: x => {
-                                x.Background = Brushes.Transparent;
-                                x.IsReadOnly = true;
-                                x.TextWrapping = TextWrapping.Wrap;
-                                x.BorderThickness = ThicknessX(0);
-                                x.FontSize = 24;
-                                x.Margin = ThicknessX(10, 10, 10, 10);
-                                x.HorizontalAlignment = HorizontalAlignment.Left;
-                                x.VerticalAlignment = VerticalAlignment.Top;
-                                x.SetBinding(TextBox.TextProperty, BindingX(nameof(vm.Message)));
-                            }
-                        )
-                    ]
+                    child: TextBoxX(
+                        configure: x => {
+                            x.Background = Brushes.Transparent;
+                            x.IsReadOnly = true;
+                            x.TextWrapping = TextWrapping.Wrap;
+                            x.BorderThickness = ThicknessX(0);
+                            x.FontSize = 24;
+                            x.Margin = ThicknessX(10, 10, 10, 10);
+                            x.HorizontalAlignment = HorizontalAlignment.Left;
+                            x.VerticalAlignment = VerticalAlignment.Top;
+                            x.SetBinding(TextBox.TextProperty, BindingX(nameof(vm.Message)));
+                        }
+                    )
                 )
             ]
         );

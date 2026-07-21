@@ -115,28 +115,22 @@ public static class Wpfx
         return button;
     }
 
-    public static Border BorderX(Action<Border>? configure = null, UIElement[]? child = null)
+    public static Border BorderX(Action<Border>? configure = null, UIElement? child = null)
     {
-        if (child != null && child.Length > 1)
-            throw new ArgumentException("BorderX accepts at most one child. Use a Panel for multiple children.");
-
-        var border = new Border 
+        var border = new Border
         {
-            Child = (child == null) ? null : child[0]
+            Child = child
         };
-        
+
         configure?.Invoke(border);
         return border;
     }
 
-    public static Viewbox ViewboxX(Action<Viewbox>? configure = null, UIElement[]? child = null)
+    public static Viewbox ViewboxX(Action<Viewbox>? configure = null, UIElement? child = null)
     {
-        if (child != null && child.Length > 1)
-            throw new ArgumentException("ViewboxX accepts at most one child.");
-
         var viewbox = new Viewbox
         {
-            Child = (child == null) ? null : child[0]
+            Child = child
         };
 
         configure?.Invoke(viewbox);

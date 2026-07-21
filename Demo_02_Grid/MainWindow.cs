@@ -39,30 +39,28 @@ public class MainWindow : Window
                         x.Background = Brushes.White;
                         _border = x;
                     },
-                    child: [
-                        ButtonX(
-                            configure: x => {
-                                x.Content = "CLICK ME";
-                                x.Margin = ThicknessX(10);
-                                x.Padding = ThicknessX(10);
-                                x.HorizontalAlignment = HorizontalAlignment.Center;
-                                x.VerticalAlignment = VerticalAlignment.Center;
+                    child: ButtonX(
+                        configure: x => {
+                            x.Content = "CLICK ME";
+                            x.Margin = ThicknessX(10);
+                            x.Padding = ThicknessX(10);
+                            x.HorizontalAlignment = HorizontalAlignment.Center;
+                            x.VerticalAlignment = VerticalAlignment.Center;
 
-                                x.Click += (s,e) => {
-                                    if (_state)
-                                    {
-                                         _state = false;
-                                        _border?.Background = Brushes.White;
-                                    }
-                                    else
-                                    {
-                                        _state = true;
-                                        _border?.Background = Brushes.Gold;
-                                    }
-                                };
-                            }
-                        )
-                    ]
+                            x.Click += (s,e) => {
+                                if (_state)
+                                {
+                                        _state = false;
+                                    _border?.Background = Brushes.White;
+                                }
+                                else
+                                {
+                                    _state = true;
+                                    _border?.Background = Brushes.Gold;
+                                }
+                            };
+                        }
+                    )
                 ),
                 BorderX(
                     configure: x => {

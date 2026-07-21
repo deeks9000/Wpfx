@@ -39,15 +39,13 @@ public class MainWindow : Window
                                 x.Background = Brushes.LightSkyBlue;
                                 x.SnapsToDevicePixels = true;
                             },
-                            child: [
-                                TextBlockX(
-                                    configure: x => {
-                                        x.HorizontalAlignment = HorizontalAlignment.Center;
-                                        x.VerticalAlignment = VerticalAlignment.Center;
-                                        x.Text = "Left-Top area";
-                                    }
-                                )
-                            ]
+                            child: TextBlockX(
+                                configure: x => {
+                                    x.HorizontalAlignment = HorizontalAlignment.Center;
+                                    x.VerticalAlignment = VerticalAlignment.Center;
+                                    x.Text = "Left-Top area";
+                                }
+                            )                            
                         ),
                         GridSplitterX(
                             configure: x => {
@@ -78,15 +76,13 @@ public class MainWindow : Window
                                 x.Background = Brushes.LightSkyBlue;
                                 x.SnapsToDevicePixels = true;
                             },
-                            child: [
-                                TextBlockX(
-                                    configure: x => {
-                                        x.HorizontalAlignment = HorizontalAlignment.Center;
-                                        x.VerticalAlignment = VerticalAlignment.Center;
-                                        x.Text = "Left-Bottom area";
-                                    }
-                                )
-                            ]
+                            child: TextBlockX(
+                                configure: x => {
+                                    x.HorizontalAlignment = HorizontalAlignment.Center;
+                                    x.VerticalAlignment = VerticalAlignment.Center;
+                                    x.Text = "Left-Bottom area";
+                                }
+                            )                            
                         ),
                     ]
                 ),
@@ -119,15 +115,13 @@ public class MainWindow : Window
                         x.Background = Brushes.LightBlue;
                         x.SnapsToDevicePixels = true;
                     },
-                    child: [
-                        TextBlockX(
-                            configure: x => {
-                                x.HorizontalAlignment = HorizontalAlignment.Center;
-                                x.VerticalAlignment = VerticalAlignment.Center;
-                                x.Text = "Main area";
-                            }
-                        )
-                    ]
+                    child: TextBlockX(
+                        configure: x => {
+                            x.HorizontalAlignment = HorizontalAlignment.Center;
+                            x.VerticalAlignment = VerticalAlignment.Center;
+                            x.Text = "Main area";
+                        }
+                    )                    
                 )
             ]
         );

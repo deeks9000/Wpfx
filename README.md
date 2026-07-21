@@ -18,8 +18,7 @@ Build familiar WPF controls and supporting types using `X` helper methods:
 | ------------------ | -------------------------- |
 | `StackPanel`       | `Wpfx.StackPanelX()`       |
 | `Grid`             | `Wpfx.GridX()`             |
-| `RowDefinition`    | `Wpfx.RowDefinitionX()`    |
-| `ColumnDefinition` | `Wpfx.ColumnDefinitionX()` |
+| `CornerRadius`     | `Wpfx.CornerRadiusX()`     |
 | `Thickness`        | `Wpfx.ThicknessX()`        |
 | `Border`           | `Wpfx.BorderX()`           |
 | `Button`           | `Wpfx.ButtonX()`           |
