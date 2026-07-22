@@ -37,7 +37,7 @@ public static class Wpfx
         return grid;
     }
 
-    public static RowDefinition RowDefinitionX(GridUnitType type, double height = 1)
+    public static RowDefinition RowDefinitionX(GridUnitType type = GridUnitType.Star, double height = 1)
     {
         return new RowDefinition
         {
@@ -45,7 +45,7 @@ public static class Wpfx
         };
     }
 
-    public static ColumnDefinition ColumnDefinitionX(GridUnitType type, double width = 1)
+    public static ColumnDefinition ColumnDefinitionX(GridUnitType type = GridUnitType.Star, double width = 1)
     {
         return new ColumnDefinition
         {
@@ -64,20 +64,14 @@ public static class Wpfx
         };
     }
 
-    public static void AddRowDefinitionX(this Grid grid, GridUnitType type, double height = 1)
+    public static void AddRowDefinitionX(this Grid grid, GridUnitType type = GridUnitType.Star, double height = 1)
     {
-        grid.RowDefinitions.Add(new RowDefinition
-        {
-            Height = GridLengthX(height, type)
-        });
+        grid.RowDefinitions.Add(RowDefinitionX(type, height));
     }
 
-    public static void AddColumnDefinitionX(this Grid grid, GridUnitType type, double width = 1)
+    public static void AddColumnDefinitionX(this Grid grid, GridUnitType type = GridUnitType.Star, double width = 1)
     {
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-        {
-            Width = GridLengthX(width, type)
-        });
+        grid.ColumnDefinitions.Add(ColumnDefinitionX(type, width));
     }
 
     public static StackPanel StackPanelX(Action<StackPanel>? configure = null, UIElement[]? children = null)

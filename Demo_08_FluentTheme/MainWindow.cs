@@ -23,8 +23,8 @@ public class MainWindow : Window
         return GridX(
             configure: x => {
                 x.AddRowDefinitionX(GridUnitType.Pixel, 100);
-                x.AddRowDefinitionX(GridUnitType.Star, 1);
-                x.AddRowDefinitionX(GridUnitType.Star, 1);
+                x.AddRowDefinitionX();
+                x.AddRowDefinitionX();
             },
             children: [
                 ButtonX(
