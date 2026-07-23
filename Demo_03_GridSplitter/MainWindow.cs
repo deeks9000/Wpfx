@@ -19,18 +19,17 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddColumnDefinitionX(GridUnitType.Star, 1);
+                x.AddColumnDefinitionX();
                 x.AddColumnDefinitionX(GridUnitType.Auto);
-                x.AddColumnDefinitionX(GridUnitType.Star, 1);
+                x.AddColumnDefinitionX();
             },
             children: [
                 GridX(
                     configure: x => {
                         Grid.SetColumn(x, 0);
-                        x.Background = Brushes.LightGreen;
-                        x.AddRowDefinitionX(GridUnitType.Star, 1);
+                        x.AddRowDefinitionX();
                         x.AddRowDefinitionX(GridUnitType.Auto);
-                        x.AddRowDefinitionX(GridUnitType.Star, 1);
+                        x.AddRowDefinitionX();
                     },
                     children: [
                         BorderX(
@@ -59,13 +58,11 @@ public class MainWindow : Window
 
                                 x.MouseEnter += (s,e) => {
                                     var gs = s as GridSplitter;
-                                    gs?.Height = 6;
                                     gs?.Background = Brushes.CornflowerBlue;
                                 };
 
                                 x.MouseLeave += (s,e) => {
                                     var gs = s as GridSplitter;
-                                    gs?.Height = 4;
                                     gs?.Background = Brushes.White;
                                 };
                             }
@@ -98,13 +95,11 @@ public class MainWindow : Window
 
                         x.MouseEnter += (s,e) => {
                             var gs = s as GridSplitter;
-                            gs?.Width = 6;
                             gs?.Background = Brushes.CornflowerBlue;
                         };
                         
                         x.MouseLeave += (s,e) => {
                             var gs = s as GridSplitter;
-                            gs?.Width = 4;
                             gs?.Background = Brushes.White;
                         };
                     }
