@@ -17,9 +17,9 @@ public static class ButtonStyles
                         visualTree: FrameworkElementFactoryX<Border>(
                             name: "PART_Border",
                             setters: [
-                                SetterX(Border.BackgroundProperty, new TemplateBindingExtension(Control.BackgroundProperty)),
-                                SetterX(Border.CornerRadiusProperty, new CornerRadius(4)),
-                                SetterX(Border.RenderTransformOriginProperty, new Point(0.5, 0.5)),
+                                SetterX(Border.BackgroundProperty, TemplateBindingX(Border.BackgroundProperty)),
+                                SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
+                                SetterX(Border.RenderTransformOriginProperty, PointX(0.5, 0.5)),
                                 SetterX(Border.SnapsToDevicePixelsProperty, true)
                             ],
                             children: [
@@ -27,7 +27,7 @@ public static class ButtonStyles
                                     setters: [
                                         SetterX(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center),
                                         SetterX(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center),
-                                        SetterX(ContentPresenter.MarginProperty, new Thickness(10))
+                                        SetterX(ContentPresenter.MarginProperty, ThicknessX(10))
                                     ]
                                 )
                             ]
@@ -38,7 +38,7 @@ public static class ButtonStyles
                                 value: true,
                                 setters: [
                                     SetterX(Border.BackgroundProperty, Brushes.LightGray, targetName: "PART_Border"),
-                                    SetterX(FrameworkElement.RenderTransformProperty, new ScaleTransform(1,1), targetName: "PART_Border")
+                                    SetterX(FrameworkElement.RenderTransformProperty, ScaleTransformX(1,1), targetName: "PART_Border")
                                 ]
                             ),
                             TriggerX(
@@ -46,7 +46,7 @@ public static class ButtonStyles
                                 value: true,
                                 setters: [
                                     SetterX(Border.BackgroundProperty, Brushes.LightGreen, targetName: "PART_Border"),
-                                    SetterX(FrameworkElement.RenderTransformProperty, new ScaleTransform(0.96,0.96), targetName: "PART_Border")
+                                    SetterX(FrameworkElement.RenderTransformProperty, ScaleTransformX(0.96,0.96), targetName: "PART_Border")
                                 ]
                             )
                         ]
@@ -66,10 +66,10 @@ public static class ButtonStyles
         );
         
 
-        // --- Resource Dictionary ----
+        // ---- Resource Dictionary ----
         ResourceDictionary dict = new ResourceDictionary();
-        dict.Add(typeof(Button), defaultButtonStyle);
-        dict.Add("PrimaryButton", primaryButtonStyle);
+        dict.Add(typeof(Button), defaultButtonStyle);           // Key: Type
+        dict.Add("PrimaryButton", primaryButtonStyle);          // Key: String
 
         return dict;
     }

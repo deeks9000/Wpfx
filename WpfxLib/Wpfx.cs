@@ -41,7 +41,7 @@ public static class Wpfx
     {
         return new RowDefinition
         {
-            Height = GridLengthX(height, type)
+            Height = GridLengthX(type, height)
         };
     }
 
@@ -49,11 +49,11 @@ public static class Wpfx
     {
         return new ColumnDefinition
         {
-            Width = GridLengthX(width, type)
+            Width = GridLengthX(type, width)
         };
     }
 
-    public static GridLength GridLengthX(double value, GridUnitType type)
+    public static GridLength GridLengthX(GridUnitType type, double value)
     {
         return type switch
         {
@@ -179,6 +179,16 @@ public static class Wpfx
         return new Thickness(left, top, right, bottom);
     }
 
+    public static Point PointX(double x, double y)
+    {
+        return new Point(x, y);
+    }
+
+    public static ScaleTransform ScaleTransformX(double scaleX, double scaleY)
+    {
+        return new ScaleTransform(scaleX, scaleY);
+    }
+        
     public static Brush BrushFromStringX(string str)
     {
         Color color = (Color)ColorConverter.ConvertFromString(str);
@@ -195,11 +205,6 @@ public static class Wpfx
         return binding;
     }
 
-    // For use inside ControlTemplates
-    public static TemplateBindingExtension TemplateBindingX(DependencyProperty property)
-    {
-        return new TemplateBindingExtension(property);
-    }
 
     //------------------------------------------------------------
     // STYLE
@@ -261,6 +266,12 @@ public static class Wpfx
         }
 
         return template;
+    }
+
+    // Use inside ControlTemplates
+    public static TemplateBindingExtension TemplateBindingX(DependencyProperty property)
+    {
+        return new TemplateBindingExtension(property);
     }
 
     public static FrameworkElementFactory FrameworkElementFactoryX<T>(string? name = null, Setter[]? setters = null, FrameworkElementFactory[]? children = null) where T : FrameworkElement

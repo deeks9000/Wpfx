@@ -22,7 +22,7 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddRowDefinitionX(GridUnitType.Pixel, 100);
+                x.AddRowDefinitionX();
                 x.AddRowDefinitionX();
                 x.AddRowDefinitionX();
             },

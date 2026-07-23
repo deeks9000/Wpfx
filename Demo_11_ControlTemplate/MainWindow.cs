@@ -99,8 +99,7 @@ public class MainWindow : Window
                 setters: [
                     SetterX(Border.CornerRadiusProperty, CornerRadiusX(8)),
                     SetterX(Border.SnapsToDevicePixelsProperty, true),
-                    // TemplateBindings map values from the templated control into the visual tree
-                    SetterX(Border.PaddingProperty, TemplateBindingX(Control.PaddingProperty)),
+                    SetterX(Border.PaddingProperty, TemplateBindingX(Border.PaddingProperty)),
                     SetterX(Border.BorderThicknessProperty, TemplateBindingX(Border.BorderThicknessProperty)),
                     SetterX(Border.BorderBrushProperty, TemplateBindingX(Border.BorderBrushProperty)),
                     SetterX(Border.BackgroundProperty, TemplateBindingX(Panel.BackgroundProperty)),
