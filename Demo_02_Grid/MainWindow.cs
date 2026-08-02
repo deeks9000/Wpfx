@@ -50,7 +50,7 @@ public class MainWindow : Window
                             x.Click += (s,e) => {
                                 if (_state)
                                 {
-                                        _state = false;
+                                    _state = false;
                                     _border?.Background = Brushes.White;
                                 }
                                 else
@@ -65,7 +65,7 @@ public class MainWindow : Window
                 BorderX(
                     configure: x => {
                         Grid.SetColumn(x, 2);
-                        x.Background = Brushes.SkyBlue;
+                        x.Background = BrushX(64,64,255);
                     }
                 )
             ]

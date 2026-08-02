@@ -44,7 +44,7 @@ public class MainWindow : Window
                                     x.VerticalAlignment = VerticalAlignment.Center;
                                     x.Text = "Left-Top area";
                                 }
-                            )                            
+                            )
                         ),
                         GridSplitterX(
                             configure: x => {
@@ -79,7 +79,7 @@ public class MainWindow : Window
                                     x.VerticalAlignment = VerticalAlignment.Center;
                                     x.Text = "Left-Bottom area";
                                 }
-                            )                            
+                            )
                         ),
                     ]
                 ),
@@ -116,7 +116,7 @@ public class MainWindow : Window
                             x.VerticalAlignment = VerticalAlignment.Center;
                             x.Text = "Main area";
                         }
-                    )                    
+                    )
                 )
             ]
         );

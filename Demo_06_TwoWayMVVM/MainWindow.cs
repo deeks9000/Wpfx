@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Printing;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -13,7 +14,6 @@ public class MainWindow : Window
     public MainWindow(MainViewModel mainViewModel)
     {
         vm = mainViewModel;
-
         DataContext = vm;
         Title = "Demo 06 TwoWay MVVM";
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -51,8 +51,9 @@ public class MainWindow : Window
                             x.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                             x.HorizontalAlignment = HorizontalAlignment.Stretch;
                             x.VerticalAlignment = VerticalAlignment.Stretch;
-                            x.Margin = ThicknessX(0, 0, 0, 0); 
-                            x.SetBinding(TextBox.TextProperty, BindingX(nameof(vm.Message), b => {
+                            x.Margin = ThicknessX(0);
+                            x.SetBinding(TextBox.TextProperty, BindingX(b => {
+                                b.Path = PropertyPathX(nameof(vm.Message));
                                 b.Mode = BindingMode.TwoWay;
                                 b.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
                             }));
@@ -83,16 +84,32 @@ public class MainWindow : Window
                         Grid.SetRow(x, 2);
                         x.Background = Brushes.LightGray;
                     },
-                    child: ButtonX(
+                    child: StackPanelX(
                         configure: x => {
-                            x.Content = "Clear message";
-                            x.Margin = ThicknessX(10);
-                            x.Padding = ThicknessX(10);
-                            x.HorizontalAlignment = HorizontalAlignment.Left;
-                            x.VerticalAlignment = VerticalAlignment.Center;
-                            x.Width = 100;
-                            x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.ClearMessage)));
-                        }
+                            x.Orientation = Orientation.Horizontal;
+                        },
+                        children: [
+                            ButtonX(
+                                configure: x => {
+                                    x.Content = "Clear message";
+                                    x.Margin = ThicknessX(10);
+                                    x.Padding = ThicknessX(10);
+                                    x.HorizontalAlignment = HorizontalAlignment.Left;
+                                    x.VerticalAlignment = VerticalAlignment.Center;
+                                    x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.ClearMessage)));
+                                }
+                            ),
+                            ButtonX(
+                                configure: x => {
+                                    x.Content = "Default message";
+                                    x.Margin = ThicknessX(10);
+                                    x.Padding = ThicknessX(10);
+                                    x.HorizontalAlignment = HorizontalAlignment.Left;
+                                    x.VerticalAlignment = VerticalAlignment.Center;
+                                    x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.DefaultMessage)));
+                                }
+                            )
+                        ]
                     )
                 )
             ]

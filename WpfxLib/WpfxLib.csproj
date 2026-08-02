@@ -1,29 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0-windows</TargetFramework>
-		<UseWPF>true</UseWPF>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<AssemblyName>UserExtensions.Wpfx</AssemblyName>
-		<PackageId>UserExtensions.Wpfx</PackageId>
-		<PackageVersion>0.1.0-alpha.5</PackageVersion>
-		<Title>WPFX - Code-First WPF Framework</Title>
-		<Authors>deeks9000</Authors>
-		<Description>A lightweight, code-first framework for building WPF UIs entirely in C#. No XAML.</Description>
-		<PackageProjectUrl>https://github.com/deeks9000/Wpfx</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/deeks9000/Wpfx</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>windows;csharp;dotnet;wpf;code-first;extensions</PackageTags>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
 
-	<ItemGroup>
-		<None Include="../README.md" Pack="true" PackagePath="/" />
-		<None Include="../LICENSE" Pack="true" PackagePath="/" />
-	</ItemGroup>
+        <AssemblyName>UserExtensions.Wpfx</AssemblyName>
+        <PackageId>UserExtensions.Wpfx</PackageId>
+        <PackageVersion>0.1.0-alpha.6</PackageVersion>
+        <Title>WPFX - Code-First WPF Framework</Title>
+        <Authors>deeks9000</Authors>
+        <Description>A lightweight, code-first framework for building WPF UIs entirely in C#. No XAML.</Description>
+        <PackageProjectUrl>https://github.com/deeks9000/Wpfx</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/deeks9000/Wpfx</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>csharp;dotnet;wpf;windows;code-first;extensions</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../README.md" Pack="true" PackagePath="/" />
+        <None Include="../LICENSE" Pack="true" PackagePath="/" />
+    </ItemGroup>
 
 </Project>

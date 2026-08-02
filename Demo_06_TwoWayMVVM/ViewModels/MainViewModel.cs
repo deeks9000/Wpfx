@@ -18,8 +18,12 @@ public class MainViewModel : INotifyPropertyChanged
             execute: async () => await ClearMessageAsync(),
             onError: ex => System.Diagnostics.Debug.WriteLine($"Command error: {ex.Message}")
         );
-    }
 
+        DefaultMessage = new AsyncCommand(
+            execute: async () => await DefaultMessageAsync(),
+            onError: ex => System.Diagnostics.Debug.WriteLine($"Command error: {ex.Message}")
+        );
+    }
 
     //---------------------------------------------
     // PROPERTIES
@@ -38,11 +42,12 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-
     //---------------------------------------------
     // COMMANDS
 
     public ICommand ClearMessage { get; }
+
+    public ICommand DefaultMessage { get; }
 
     private async Task ClearMessageAsync()
     {
@@ -51,6 +56,12 @@ public class MainViewModel : INotifyPropertyChanged
         Message = string.Empty;
     }
 
+    private async Task DefaultMessageAsync()
+    {
+        await Task.CompletedTask;
+
+        Message = "Hello Universe!";
+    }
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

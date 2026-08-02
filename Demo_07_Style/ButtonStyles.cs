@@ -55,7 +55,6 @@ public static class ButtonStyles
             ]
         );
 
-
         // ---- Named style 1 ----
         var primaryButtonStyle = StyleX<Button>(
             basedOn: defaultButtonStyle,
@@ -64,7 +63,6 @@ public static class ButtonStyles
                 SetterX(Control.ForegroundProperty, Brushes.DarkBlue)
             ]
         );
-        
 
         // ---- Resource Dictionary ----
         ResourceDictionary dict = new ResourceDictionary();
@@ -76,7 +74,7 @@ public static class ButtonStyles
 
 
     public static ResourceDictionary Build_Old()
-    {        
+    {
         // ---- Default style ----
 
         // [1] Create the template
@@ -120,13 +118,11 @@ public static class ButtonStyles
         var defaultButtonStyle = new Style(typeof(Button));
         defaultButtonStyle.Setters.Add(new Setter(Control.TemplateProperty, template));
 
-                
         // ---- Named style 1 ----
         var primaryButtonStyle = new Style(typeof(Button));
         primaryButtonStyle.Setters.Add(new Setter(Control.BackgroundProperty, Brushes.RoyalBlue));
         primaryButtonStyle.Setters.Add(new Setter(Control.ForegroundProperty, Brushes.White));
-                            
-        
+
         // ---- Resource Dictionary ----
         ResourceDictionary dict = new ResourceDictionary();
         dict.Add(typeof(Button), defaultButtonStyle);

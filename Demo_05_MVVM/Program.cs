@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
-namespace Demo_05_SimpleMVVM;
+namespace Demo_05_MVVM;
 
 public static class Program
 {
