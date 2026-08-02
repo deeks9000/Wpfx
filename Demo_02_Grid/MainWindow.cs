@@ -65,7 +65,7 @@ public class MainWindow : Window
                 BorderX(
                     configure: x => {
                         Grid.SetColumn(x, 2);
-                        x.Background = BrushX(59,15,250); //Brushes.SkyBlue;
+                        x.Background = BrushX(64,64,255);
                     }
                 )
             ]
