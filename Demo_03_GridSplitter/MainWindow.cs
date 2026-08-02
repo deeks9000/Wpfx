@@ -17,7 +17,7 @@ public class MainWindow : Window
 
     private UIElement Build()
     {
-        return GridX(
+        var ui = GridX(
             configure: x => {
                 x.AddColumnDefinitionX();
                 x.AddColumnDefinitionX(GridUnitType.Auto);
@@ -44,7 +44,7 @@ public class MainWindow : Window
                                     x.VerticalAlignment = VerticalAlignment.Center;
                                     x.Text = "Left-Top area";
                                 }
-                            )                            
+                            )
                         ),
                         GridSplitterX(
                             configure: x => {
@@ -79,7 +79,7 @@ public class MainWindow : Window
                                     x.VerticalAlignment = VerticalAlignment.Center;
                                     x.Text = "Left-Bottom area";
                                 }
-                            )                            
+                            )
                         ),
                     ]
                 ),
@@ -116,9 +116,30 @@ public class MainWindow : Window
                             x.VerticalAlignment = VerticalAlignment.Center;
                             x.Text = "Main area";
                         }
-                    )                    
+                    )
                 )
             ]
         );
+
+        // Print the tree
+        System.Diagnostics.Debug.WriteLine("####################");
+        PrintVisualTree(ui);
+        System.Diagnostics.Debug.WriteLine("####################");
+
+        return ui;
+    }
+
+
+    private static void PrintVisualTree(DependencyObject obj, int indent = 0)
+    {
+        System.Diagnostics.Debug.WriteLine($"{new string(' ', indent)}{obj.GetType().Name}");
+
+        int count = VisualTreeHelper.GetChildrenCount(obj);
+
+        for (int i = 0; i < count; i++)
+        {
+            DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+            PrintVisualTree(child, indent + 2);
+        }
     }
 }

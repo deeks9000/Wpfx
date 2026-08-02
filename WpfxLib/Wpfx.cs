@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using System.Linq.Expressions;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace UserExtensions;
 
@@ -88,27 +91,6 @@ public static class Wpfx
         return stackPanel;
     }
 
-    public static TextBox TextBoxX(Action<TextBox>? configure = null)
-    {
-        var textBox = new TextBox();
-        configure?.Invoke(textBox);
-        return textBox;
-    }
-
-    public static TextBlock TextBlockX(Action<TextBlock>? configure = null)
-    {
-        var textBlock = new TextBlock();
-        configure?.Invoke(textBlock);
-        return textBlock;
-    }
-      
-    public static Button ButtonX(Action<Button>? configure = null)
-    {
-        var button = new Button();
-        configure?.Invoke(button);
-        return button;
-    }
-
     public static Border BorderX(Action<Border>? configure = null, UIElement? child = null)
     {
         var border = new Border
@@ -131,33 +113,80 @@ public static class Wpfx
         return viewbox;
     }
 
-    public static CheckBox CheckBoxX(Action<CheckBox>? configure = null)
+    private static T FrameworkElementX<T>(Action<T>? configure = null) where T : FrameworkElement, new()
     {
-        var checkBox = new CheckBox();
-        configure?.Invoke(checkBox);
-        return checkBox;
+        var element = new T();
+        configure?.Invoke(element);
+        return element;
     }
 
-    public static ComboBox ComboBoxX(Action<ComboBox>? configure = null)
-    {
-        var comboBox = new ComboBox();
-        configure?.Invoke(comboBox);
-        return comboBox;
-    }
+    public static Button ButtonX(Action<Button>? configure = null) => FrameworkElementX(configure);
 
-    public static Slider SliderX(Action<Slider>? configure = null)
-    {
-        var slider = new Slider();
-        configure?.Invoke(slider);
-        return slider;
-    }
+    public static TextBox TextBoxX(Action<TextBox>? configure = null) => FrameworkElementX(configure);
 
-    public static GridSplitter GridSplitterX(Action<GridSplitter>? configure = null)
-    {
-        var gridSplitter = new GridSplitter();
-        configure?.Invoke(gridSplitter);
-        return gridSplitter;
-    }
+    public static TextBlock TextBlockX(Action<TextBlock>? configure = null) => FrameworkElementX(configure);
+
+    public static CheckBox CheckBoxX(Action<CheckBox>? configure = null) => FrameworkElementX(configure);
+
+    public static ComboBox ComboBoxX(Action<ComboBox>? configure = null) => FrameworkElementX(configure);
+
+    public static Slider SliderX(Action<Slider>? configure = null) => FrameworkElementX(configure);
+
+    public static Label LabelX(Action<Label>? configure = null) => FrameworkElementX(configure);
+
+    public static Image ImageX(Action<Image>? configure = null) => FrameworkElementX(configure);
+
+    public static Ellipse EllipseX(Action<Ellipse>? configure = null) => FrameworkElementX(configure);
+
+    public static Rectangle RectangleX(Action<Rectangle>? configure = null) => FrameworkElementX(configure);
+
+    public static Line LineX(Action<Line>? configure = null) => FrameworkElementX(configure);
+
+    public static Polygon PolygonX(Action<Polygon>? configure = null) => FrameworkElementX(configure);
+
+    public static Polyline PolylineX(Action<Polyline>? configure = null) => FrameworkElementX(configure);
+
+    public static Path PathX(Action<Path>? configure = null) => FrameworkElementX(configure);
+
+    public static ProgressBar ProgressBarX(Action<ProgressBar>? configure = null) => FrameworkElementX(configure);
+
+    public static RadioButton RadioButtonX(Action<RadioButton>? configure = null) => FrameworkElementX(configure);
+
+    public static ToggleButton ToggleButtonX(Action<ToggleButton>? configure = null) => FrameworkElementX(configure);
+
+    public static RepeatButton RepeatButtonX(Action<RepeatButton>? configure = null) => FrameworkElementX(configure);
+
+    public static PasswordBox PasswordBoxX(Action<PasswordBox>? configure = null) => FrameworkElementX(configure);
+
+    public static RichTextBox RichTextBoxX(Action<RichTextBox>? configure = null) => FrameworkElementX(configure);
+
+    public static DatePicker DatePickerX(Action<DatePicker>? configure = null) => FrameworkElementX(configure);
+
+    public static Calendar CalendarX(Action<Calendar>? configure = null) => FrameworkElementX(configure);
+
+    public static ListBox ListBoxX(Action<ListBox>? configure = null) => FrameworkElementX(configure);
+
+    public static ListView ListViewX(Action<ListView>? configure = null) => FrameworkElementX(configure);
+
+    public static TreeView TreeViewX(Action<TreeView>? configure = null) => FrameworkElementX(configure);
+
+    public static TabControl TabControlX(Action<TabControl>? configure = null) => FrameworkElementX(configure);
+
+    public static Menu MenuX(Action<Menu>? configure = null) => FrameworkElementX(configure);
+
+    public static ToolBar ToolBarX(Action<ToolBar>? configure = null) => FrameworkElementX(configure);
+
+    public static StatusBar StatusBarX(Action<StatusBar>? configure = null) => FrameworkElementX(configure);
+
+    public static Separator SeparatorX(Action<Separator>? configure = null) => FrameworkElementX(configure);
+
+    public static ScrollViewer ScrollViewerX(Action<ScrollViewer>? configure = null) => FrameworkElementX(configure);
+
+    public static InkCanvas InkCanvasX(Action<InkCanvas>? configure = null) => FrameworkElementX(configure);
+
+    public static MediaElement MediaElementX(Action<MediaElement>? configure = null) => FrameworkElementX(configure);
+           
+    public static GridSplitter GridSplitterX(Action<GridSplitter>? configure = null) => FrameworkElementX(configure);
 
     public static CornerRadius CornerRadiusX(double uniformRadius)
     {
@@ -198,11 +227,55 @@ public static class Wpfx
         return brush;
     }
 
-    public static Binding BindingX(string path, Action<Binding>? configure = null)
+    public static Brush BrushX(byte red, byte green, byte blue)
+    {
+        Color color = Color.FromRgb(red, green, blue);
+        Brush brush = new SolidColorBrush(color);
+        return brush;
+    }
+
+    public static string PathStringX<T, TValue>(Expression<Func<T, TValue>> expr)
+    {
+        if (expr == null) throw new ArgumentNullException(nameof(expr));
+
+        var stack = new Stack<string>();
+        var currentExpression = expr.Body;
+
+        while (currentExpression is MemberExpression member)
+        {
+            stack.Push(member.Member.Name);
+            currentExpression = member.Expression!;
+        }
+
+        if (stack.Count == 0)
+            throw new ArgumentException("Expression must be a member access expression like 'x => x.Property.SubProperty'.", nameof(expr));
+
+        return string.Join(".", stack);
+    }
+
+    public static PropertyPath PropertyPathX(string path)
+    {
+        return new PropertyPath(path);
+    }
+
+    public static Binding BindingX(string path)
     {
         var binding = new Binding(path);
+        return binding;
+    }
+
+    public static Binding BindingX(Action<Binding>? configure = null)
+    {
+        var binding = new Binding();
         configure?.Invoke(binding);
         return binding;
+    }
+
+    public static MultiBinding MultiBindingX(Action<MultiBinding>? configure = null)
+    {
+        var multiBinding = new MultiBinding();
+        configure?.Invoke(multiBinding);
+        return multiBinding;
     }
 
 

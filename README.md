@@ -4,13 +4,13 @@
 
 WPFX is a lightweight, code-first library for building WPF UIs **entirely in C#**. No XAML.
 
-**You can clearly see your design as a collapsible WPF `UIElement` tree in C# code.**
+**Navigate your UI design as a collapsible `UIElement` tree directly in C# code.**
 
-![Visual Studio showing a collapsed WPFX UI tree in C#](https://raw.githubusercontent.com/deeks9000/Wpfx/main/Images/wpfx_tree_view.png)
+![Visual Studio showing a collapsed WPFX UI tree in C#](https://raw.githubusercontent.com/deeks9000/Wpfx/main/Images/Wpfx.png)
 
-WPFX embraces a declarative, tree-oriented composition style inspired by modern UI frameworks such as Flutter, while keeping configuration in familiar C# code and remaining fully compatible with WPF.
+WPFX embraces a declarative, tree-oriented composition style inspired by modern UI frameworks such as Flutter, while keeping configuration in familiar C# code and building directly on top of WPF.
 
-WPFX is intentionally lightweight — the library fits in a single source file of fewer than 300 lines.
+WPFX is intentionally lightweight — the library is contained in a single source file.
 
 Build familiar WPF controls and supporting types using `X` helper methods:
 
@@ -24,6 +24,7 @@ Build familiar WPF controls and supporting types using `X` helper methods:
 | `TextBox`          | `Wpfx.TextBoxX()`          |
 | `Thickness`        | `Wpfx.ThicknessX()`        |
 | `CornerRadius`     | `Wpfx.CornerRadiusX()`     |
+| `Binding`          | `Wpfx.BindingX()`          |
 
 ---
 
@@ -31,7 +32,7 @@ Build familiar WPF controls and supporting types using `X` helper methods:
 
 * Pure C# layout — no `.xaml` files required
 * Declarative, tree-oriented UI composition
-* Natural parent/child composition using `children` and `child`
+* Natural parent/child composition using named `child` and `children` arguments
 * Modern C# collection expressions for clean UI tree definitions
 * Direct configuration of native WPF controls through the `configure` lambda
 * Works with existing WPF concepts including data binding, commands, events, MVVM and dependency injection
@@ -65,8 +66,6 @@ This provides a single, easily identifiable location for the application's UI, w
 ### 4. Write UI logic where it naturally belongs
 
 Controls can be configured where they are declared, allowing the UI to be written in a natural top-to-bottom order.
-
-Traditional WPF often requires controls to be declared first and manipulated later.
 
 WPFX encourages writing UI logic directly alongside the control it belongs to, following the natural flow of the visual tree. This keeps related code together and reduces the need to jump between XAML and code-behind or between distant sections of the same file.
 

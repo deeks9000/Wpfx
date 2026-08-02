@@ -3,7 +3,7 @@
   <Project Path="Demo_02_Grid/Demo_02_Grid.csproj" />
   <Project Path="Demo_03_GridSplitter/Demo_03_GridSplitter.csproj" />
   <Project Path="Demo_04_ComboBox/Demo_04_ComboBox.csproj" />
-  <Project Path="Demo_05_SimpleMVVM/Demo_05_SimpleMVVM.csproj" />
+  <Project Path="Demo_05_MVVM/Demo_05_MVVM.csproj" />
   <Project Path="Demo_06_TwoWayMVVM/Demo_06_TwoWayMVVM.csproj" />
   <Project Path="Demo_07_Style/Demo_07_Style.csproj" />
   <Project Path="Demo_08_FluentTheme/Demo_08_FluentTheme.csproj" />

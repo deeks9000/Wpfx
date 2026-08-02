@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Demo_05_SimpleMVVM;
+namespace Demo_05_MVVM;
 
 public class AsyncCommand : ICommand
 {
