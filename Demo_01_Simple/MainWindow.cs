@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Demo_01_Simple;
 
@@ -20,7 +19,7 @@ public class MainWindow : Window
 
     private UIElement Build()
     {
-        var ui = StackPanelX(
+        return StackPanelX(
             children: [
                 ButtonX(
                     configure: x => {
@@ -45,25 +44,5 @@ public class MainWindow : Window
                 )
             ]
         );
-
-        // Print the tree
-        System.Diagnostics.Debug.WriteLine("####################");
-        PrintVisualTree(ui);
-        System.Diagnostics.Debug.WriteLine("####################");
-
-        return ui;
-    }
-
-    private static void PrintVisualTree(DependencyObject obj, int indent = 0)
-    {
-        System.Diagnostics.Debug.WriteLine($"{new string(' ', indent)}{obj.GetType().Name}");
-
-        int count = VisualTreeHelper.GetChildrenCount(obj);
-
-        for (int i = 0; i < count; i++)
-        {
-            DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-            PrintVisualTree(child, indent + 2);
-        }
     }
 }
