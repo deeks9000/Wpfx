@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented here.
 
+## 0.1.0-alpha.7 — 2026-08-05
+
+### Highlights
+
+* **Breaking change:** Simplified `Grid` extension methods for adding rows and columns, removing the `DefinitionX` suffix.
+* Rationale: `Grid.AddRow()` and `Grid.AddColumn()` are _extension_ methods that do not clash with the existing WPF framework, therefore the `X` suffix is not required.
+
+### Breaking Changes
+
+* Renamed `AddRowDefinitionX()` -> `AddRow()`.
+* Renamed `AddColumnDefinitionX()` -> `AddColumn()`.
+
+### Features
+- `Demo_08_FluentTheme` logic improvements, and suppress warning moved to `csproj`.
+
 ## 0.1.0-alpha.6 — 2026-08-02
 
 ### Highlights

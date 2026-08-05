@@ -23,11 +23,11 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddRowDefinitionX(GridUnitType.Auto);
-                x.AddRowDefinitionX(GridUnitType.Auto);
-                x.AddRowDefinitionX(GridUnitType.Auto);
-                x.AddRowDefinitionX(GridUnitType.Auto);
-                x.AddRowDefinitionX();
+                x.AddRow(GridUnitType.Auto);
+                x.AddRow(GridUnitType.Auto);
+                x.AddRow(GridUnitType.Auto);
+                x.AddRow(GridUnitType.Auto);
+                x.AddRow();
             },
             children: [
                 BorderX(
@@ -124,7 +124,7 @@ public class MainWindow : Window
                         configure: x => {
                             x.HorizontalAlignment = HorizontalAlignment.Center;
                             x.VerticalAlignment = VerticalAlignment.Center;
-                            x.Stretch = Stretch.Uniform;
+                            x.Stretch = Stretch.Uniform;                            
                             x.SetBinding(Image.SourceProperty, BindingX(PathStringX((MainViewModel vm) => vm.SelectedCat!.ImageUrl)));
                         }
                     )

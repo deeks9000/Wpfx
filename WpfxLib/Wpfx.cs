@@ -67,12 +67,12 @@ public static class Wpfx
         };
     }
 
-    public static void AddRowDefinitionX(this Grid grid, GridUnitType type = GridUnitType.Star, double height = 1)
+    public static void AddRow(this Grid grid, GridUnitType type = GridUnitType.Star, double height = 1)
     {
         grid.RowDefinitions.Add(RowDefinitionX(type, height));
     }
 
-    public static void AddColumnDefinitionX(this Grid grid, GridUnitType type = GridUnitType.Star, double width = 1)
+    public static void AddColumn(this Grid grid, GridUnitType type = GridUnitType.Star, double width = 1)
     {
         grid.ColumnDefinitions.Add(ColumnDefinitionX(type, width));
     }
