@@ -19,17 +19,17 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddColumnDefinitionX();
-                x.AddColumnDefinitionX(GridUnitType.Auto);
-                x.AddColumnDefinitionX();
+                x.AddColumn();
+                x.AddColumn(GridUnitType.Auto);
+                x.AddColumn();
             },
             children: [
                 GridX(
                     configure: x => {
                         Grid.SetColumn(x, 0);
-                        x.AddRowDefinitionX();
-                        x.AddRowDefinitionX(GridUnitType.Auto);
-                        x.AddRowDefinitionX();
+                        x.AddRow();
+                        x.AddRow(GridUnitType.Auto);
+                        x.AddRow();
                     },
                     children: [
                         BorderX(

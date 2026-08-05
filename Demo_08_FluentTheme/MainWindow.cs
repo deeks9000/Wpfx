@@ -6,7 +6,6 @@ namespace Demo_08_FluentTheme;
 
 public class MainWindow : Window
 {
-    private bool _isDarkMode = false;
     private TextBlock? _txtInfo;
 
     public MainWindow()
@@ -22,36 +21,30 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddRowDefinitionX();
-                x.AddRowDefinitionX();
-                x.AddRowDefinitionX();
+                x.AddRow();
+                x.AddRow();
+                x.AddRow();
             },
             children: [
                 ButtonX(
                     configure: x => {
                         Grid.SetRow(x, 0);
-                        x.Content = "Switch to Dark Mode";
+                        x.Content = "Switch Theme";
                         x.Margin = ThicknessX(10);
                         x.Padding = ThicknessX(10);
                         x.HorizontalAlignment = HorizontalAlignment.Center;
                         x.VerticalAlignment = VerticalAlignment.Center;
 
                         x.Click += (s,e) => {
-                            if (_isDarkMode == false)
-                            { 
-                                #pragma warning disable WPF0001
-                                this.ThemeMode = ThemeMode.Dark;
-
-                                _isDarkMode = true;
-                                x.Content = "Switch to Light Mode";
+                            if (ThemeMode != ThemeMode.Dark)
+                            {
+                                ThemeMode = ThemeMode.Dark;
+                                x.Content = "Switch to Light Theme";
                             }
                             else
                             {
-                                #pragma warning disable WPF0001
-                                this.ThemeMode = ThemeMode.Light;
-
-                                 _isDarkMode = false;
-                                x.Content = "Switch to Dark Mode";
+                                ThemeMode = ThemeMode.Light;
+                                x.Content = "Switch to Dark Theme";
                             }
                         };
                     }
@@ -86,5 +79,5 @@ public class MainWindow : Window
                 )
             ]
         );
-    }    
+    }
 }

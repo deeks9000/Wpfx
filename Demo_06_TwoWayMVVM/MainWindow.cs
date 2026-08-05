@@ -1,5 +1,4 @@
-﻿using System.Printing;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -31,9 +30,9 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddRowDefinitionX(GridUnitType.Pixel, 100);
-                x.AddRowDefinitionX();
-                x.AddRowDefinitionX(GridUnitType.Auto);
+                x.AddRow(GridUnitType.Pixel, 100);
+                x.AddRow();
+                x.AddRow(GridUnitType.Auto);
             },
             children: [
                 BorderX(
