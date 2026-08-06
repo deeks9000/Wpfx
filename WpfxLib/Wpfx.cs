@@ -23,15 +23,6 @@ public static class Wpfx
             if (child == null)
                 continue;
 
-            var hasExplicitRow = child.ReadLocalValue(Grid.RowProperty) != DependencyProperty.UnsetValue;
-
-            var hasExplicitColumn = child.ReadLocalValue(Grid.ColumnProperty) != DependencyProperty.UnsetValue;
-
-            if (!hasExplicitRow && !hasExplicitColumn)
-            {
-                Grid.SetRow(child, i);
-            }
-
             grid.Children.Add(child);
         }
 
@@ -188,36 +179,36 @@ public static class Wpfx
            
     public static GridSplitter GridSplitterX(Action<GridSplitter>? configure = null) => FrameworkElementX(configure);
 
-    public static CornerRadius CornerRadiusX(double uniformRadius)
-    {
-        return new CornerRadius(uniformRadius);
-    }
+    public static CornerRadius CornerRadiusX(double uniformRadius) => new CornerRadius(uniformRadius);
 
     public static CornerRadius CornerRadiusX(double topLeft, double topRight, double bottomRight, double bottomLeft)
     {
         return new CornerRadius(topLeft, topRight, bottomRight, bottomLeft);
     }
 
-    public static Thickness ThicknessX(double length)
-    {
-        return new Thickness(length);
-    }
+    public static Thickness ThicknessX(double length) => new Thickness(length);
 
     public static Thickness ThicknessX(double left, double top, double right, double bottom)
     {
         return new Thickness(left, top, right, bottom);
     }
 
-    public static Point PointX(double x, double y)
-    {
-        return new Point(x, y);
-    }
+    public static Point PointX(double x, double y) => new Point(x, y);
 
-    public static ScaleTransform ScaleTransformX(double scaleX, double scaleY)
-    {
-        return new ScaleTransform(scaleX, scaleY);
-    }
-        
+    public static ScaleTransform ScaleTransformX(double scaleX, double scaleY) => new ScaleTransform(scaleX, scaleY);
+
+    public static RotateTransform RotateTransformX(double angle) => new RotateTransform(angle);
+
+    public static RotateTransform RotateTransformX(double angle, double centerX, double centerY) => new RotateTransform(angle, centerX, centerY);
+
+    public static SkewTransform SkewTransformX(double angleX, double angleY) => new SkewTransform(angleX, angleY);
+
+    public static TranslateTransform TranslateTransformX(double x, double y) => new TranslateTransform(x, y);
+
+    public static MatrixTransform MatrixTransformX(Matrix matrix) => new MatrixTransform(matrix);
+
+    public static TransformGroup TransformGroupX() => new TransformGroup();
+
     public static Brush BrushFromStringX(string str)
     {
         Color color = (Color)ColorConverter.ConvertFromString(str);
@@ -253,16 +244,9 @@ public static class Wpfx
         return string.Join(".", stack);
     }
 
-    public static PropertyPath PropertyPathX(string path)
-    {
-        return new PropertyPath(path);
-    }
+    public static PropertyPath PropertyPathX(string path, params object[] pathParameters) => new PropertyPath(path, pathParameters);
 
-    public static Binding BindingX(string path)
-    {
-        var binding = new Binding(path);
-        return binding;
-    }
+    public static Binding BindingX(string path) => new Binding(path);
 
     public static Binding BindingX(Action<Binding>? configure = null)
     {
@@ -298,13 +282,8 @@ public static class Wpfx
 
         return style;
     }
-        
-    public static Setter SetterX(DependencyProperty property, object value, string? targetName = null)
-    {
-        var setter = new Setter(property, value, targetName);
 
-        return setter;
-    }
+    public static Setter SetterX(DependencyProperty property, object value, string? targetName = null) => new Setter(property, value, targetName);
 
     public static Trigger TriggerX(DependencyProperty property, object value, Setter[]? setters = null)
     {
@@ -341,11 +320,8 @@ public static class Wpfx
         return template;
     }
 
-    // Use inside ControlTemplates
-    public static TemplateBindingExtension TemplateBindingX(DependencyProperty property)
-    {
-        return new TemplateBindingExtension(property);
-    }
+    // Use in a ControlTemplate visual tree to bind to the templated parent
+    public static TemplateBindingExtension TemplateBindingX(DependencyProperty property) => new TemplateBindingExtension(property);
 
     public static FrameworkElementFactory FrameworkElementFactoryX<T>(string? name = null, Setter[]? setters = null, FrameworkElementFactory[]? children = null) where T : FrameworkElement
     {
