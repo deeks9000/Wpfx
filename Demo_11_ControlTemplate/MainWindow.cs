@@ -30,21 +30,12 @@ public class MainWindow : Window
                         x.Width = 120;
                         x.Height = 40;
                         x.Margin = ThicknessX(10);
+                        x.Padding = ThicknessX(10);
                         x.HorizontalAlignment = HorizontalAlignment.Left;
-                        x.Foreground = Brushes.Black;
-                        x.Background = BrushFromStringX("#88DDFF");                        
+                        x.Background = BrushFromStringX("#88DDFF");
                         x.BorderThickness = ThicknessX(0);
-
-                        if (TryFindResource("ButtonControlTemplate") is ControlTemplate btnTemplate)
-                            x.Template = btnTemplate;
-
-                        x.MouseEnter += (s,e) => {
-                            Mouse.OverrideCursor = Cursors.Hand;
-                        };
-
-                        x.MouseLeave += (s,e) => {
-                            Mouse.OverrideCursor = null;
-                        };
+                        x.Cursor = Cursors.Hand;
+                        x.Template = TryFindResource("ButtonTemplate") as ControlTemplate ?? x.Template;
 
                         x.Click += (s,e) => {
                             _count++;
@@ -56,7 +47,7 @@ public class MainWindow : Window
                     configure: x => { 
                         _txtInfo = x; 
                         x.Text = "Count: 0"; 
-                        x.Margin = new Thickness(10); 
+                        x.Margin = new Thickness(10);
                     }
                 ),
                 ButtonX(
@@ -65,21 +56,12 @@ public class MainWindow : Window
                         x.Width = 120;
                         x.Height = 40;
                         x.Margin = ThicknessX(10);
+                        x.Padding = ThicknessX(10);
                         x.HorizontalAlignment = HorizontalAlignment.Left;
-                        x.Foreground = Brushes.Black;
                         x.Background = BrushFromStringX("#88FFDD");
                         x.BorderThickness = ThicknessX(0,0,0,2);
-
-                        if (TryFindResource("LocalButtonControlTemplate") is ControlTemplate btnTemplate)
-                            x.Template = btnTemplate;
-
-                        x.MouseEnter += (s,e) => {
-                            Mouse.OverrideCursor = Cursors.Hand;
-                        };
-
-                        x.MouseLeave += (s,e) => {
-                            Mouse.OverrideCursor = null;
-                        };
+                        x.Cursor = Cursors.Hand;
+                        x.Template = TryFindResource("LocalButtonTemplate") as ControlTemplate ?? x.Template;
 
                         x.Click += (s,e) => {
                             _count++;
@@ -93,34 +75,37 @@ public class MainWindow : Window
 
     public static ResourceDictionary BuildLocalResourceDictionary()
     {
-        var btnTemplate = ControlTemplateX<Button>(
-            visualTree: FrameworkElementFactoryX<Border>(
-                name: "PART_Border",
-                setters: [
-                    SetterX(Border.CornerRadiusProperty, CornerRadiusX(8)),
-                    SetterX(Border.SnapsToDevicePixelsProperty, true),
-                    SetterX(Border.PaddingProperty, TemplateBindingX(Border.PaddingProperty)),
-                    SetterX(Border.BorderThicknessProperty, TemplateBindingX(Border.BorderThicknessProperty)),
-                    SetterX(Border.BorderBrushProperty, TemplateBindingX(Border.BorderBrushProperty)),
-                    SetterX(Border.BackgroundProperty, TemplateBindingX(Panel.BackgroundProperty)),
-                ],
-                children: [
-                    FrameworkElementFactoryX<ContentPresenter>(
-                        name: "PART_Presenter",
-                        setters: [
-                            SetterX(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center),
-                            SetterX(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center)
-                        ]
-                    )
-                ]
-            ),
+        // ---- Visual Tree ----
+        var visualTree = FrameworkElementFactoryX<Border>(
+            name: "PART_Border",
+            setters: [
+                SetterX(Border.PaddingProperty, TemplateBindingX(Control.PaddingProperty)),
+                SetterX(Border.CornerRadiusProperty, CornerRadiusX(20)),
+                SetterX(Border.SnapsToDevicePixelsProperty, true),
+                SetterX(Border.BorderThicknessProperty, TemplateBindingX(Border.BorderThicknessProperty)),
+                SetterX(Border.BorderBrushProperty, TemplateBindingX(Border.BorderBrushProperty)),
+                SetterX(Border.BackgroundProperty, TemplateBindingX(Panel.BackgroundProperty)),
+            ],
+            children: [
+                FrameworkElementFactoryX<ContentPresenter>(
+                    name: "PART_Presenter",
+                    setters: [
+                        SetterX(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center),
+                        SetterX(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center),
+                    ]
+                )
+            ]
+        );
+
+        var template = ControlTemplateX<Button>(
+            visualTree: visualTree,
             triggers: [
                 TriggerX(
                     property: UIElement.IsMouseOverProperty,
                     value: true,
                     setters: [
                         SetterX(Border.BackgroundProperty, BrushFromStringX("#33aa80"), targetName: "PART_Border"),
-                        SetterX(Control.ForegroundProperty, Brushes.Black, targetName: "PART_Presenter")
+                        SetterX(Control.ForegroundProperty, Brushes.Black, targetName: "PART_Presenter"),
                     ]
                 ),
                 TriggerX(
@@ -135,7 +120,7 @@ public class MainWindow : Window
         );
 
         ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("LocalButtonControlTemplate", btnTemplate);
+        dict.Add("LocalButtonTemplate", template);
 
         return dict;
     }

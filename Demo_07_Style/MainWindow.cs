@@ -23,8 +23,9 @@ public class MainWindow : Window
             children: [
                 ButtonX(
                     configure: x => {
-                        x.Content = "Click me with style!";
+                        x.Content = "Click me with Default Button style";
                         x.Margin = ThicknessX(10);
+                        x.Padding = ThicknessX(10);
                         x.HorizontalAlignment = HorizontalAlignment.Left;
                         x.VerticalAlignment = VerticalAlignment.Top;
                         x.Click += (s,e) => {
@@ -39,7 +40,21 @@ public class MainWindow : Window
                         x.Text = $"Count: {_count}";
                         x.Margin = ThicknessX(10);
                     }
-                )
+                ),
+                ButtonX(
+                    configure: x => {
+                        x.Style = Application.Current.TryFindResource("PrimaryButton") as Style;
+                        x.Content = "Click me with Primary Button style";
+                        x.Margin = ThicknessX(10);
+                        x.Padding = ThicknessX(10);
+                        x.HorizontalAlignment = HorizontalAlignment.Left;
+                        x.VerticalAlignment = VerticalAlignment.Top;
+                        x.Click += (s,e) => {
+                            _count++;
+                            _txtInfo?.Text = $"Count: {_count}";
+                        };
+                    }
+                ),
             ]
         );
     }

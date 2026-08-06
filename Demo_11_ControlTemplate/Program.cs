@@ -20,31 +20,34 @@ public static class Program
 
     public static ResourceDictionary BuildAppResourceDictionary()
     {
-        var btnTemplate = ControlTemplateX<Button>(
-            visualTree: FrameworkElementFactoryX<Border>(
-                name: "PART_Border",
-                setters: [
-                    SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
-                    SetterX(Border.SnapsToDevicePixelsProperty, true),
-                    SetterX(Border.PaddingProperty, TemplateBindingX(Control.PaddingProperty)),
-                    SetterX(Border.BorderThicknessProperty, TemplateBindingX(Border.BorderThicknessProperty)),
-                    SetterX(Border.BorderBrushProperty, TemplateBindingX(Border.BorderBrushProperty)),
-                    SetterX(Border.BackgroundProperty, TemplateBindingX(Panel.BackgroundProperty)),
-                ],
-                children: [
-                    FrameworkElementFactoryX<ContentPresenter>(
-                        name: "PART_Presenter",
-                        setters: [
-                            SetterX(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center),
-                            SetterX(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center)
-                        ]
-                    )
-                ]
-            ),
+        // ---- Visual Tree ----
+        var visualTree = FrameworkElementFactoryX<Border>(
+            name: "PART_Border",
+            setters: [
+                SetterX(Border.PaddingProperty, TemplateBindingX(Control.PaddingProperty)),
+                SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
+                SetterX(Border.SnapsToDevicePixelsProperty, true),
+                SetterX(Border.BorderThicknessProperty, TemplateBindingX(Border.BorderThicknessProperty)),
+                SetterX(Border.BorderBrushProperty, TemplateBindingX(Border.BorderBrushProperty)),
+                SetterX(Border.BackgroundProperty, TemplateBindingX(Panel.BackgroundProperty)),
+            ],
+            children: [
+                FrameworkElementFactoryX<ContentPresenter>(
+                    name: "PART_Presenter",
+                    setters: [
+                        SetterX(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center),
+                        SetterX(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center)
+                    ]
+                )
+            ]
+        );
+
+        var template = ControlTemplateX<Button>(
+            visualTree: visualTree,
             triggers: [
                 TriggerX(
                     property: UIElement.IsMouseOverProperty, 
-                    value: true, 
+                    value: true,
                     setters: [
                         SetterX(Border.BackgroundProperty, BrushFromStringX("#66BBEE"), targetName: "PART_Border"),
                         SetterX(Control.ForegroundProperty, Brushes.Black, targetName: "PART_Presenter")
@@ -52,9 +55,9 @@ public static class Program
                 ),
                 TriggerX(
                     property: Button.IsPressedProperty, 
-                    value: true, 
+                    value: true,
                     setters: [
-                        SetterX(Border.BackgroundProperty, Brushes.Black, targetName: "PART_Border"),                        
+                        SetterX(Border.BackgroundProperty, Brushes.Black, targetName: "PART_Border"),
                         SetterX(Control.ForegroundProperty, Brushes.White, targetName: "PART_Presenter")
                     ]
                 )
@@ -62,7 +65,7 @@ public static class Program
         );
 
         ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("ButtonControlTemplate", btnTemplate);
+        dict.Add("ButtonTemplate", template);
 
         return dict;
     }
