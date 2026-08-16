@@ -22,20 +22,20 @@ public class MainWindow : Window
     {
         return GridX(
             configure: x => {
-                x.AddColumn();
-                x.AddColumn();
-                x.AddColumn();
+                x.AddRow();
+                x.AddRow();
+                x.AddRow();
             },
             children: [
                 BorderX(
                     configure: x => {
-                        Grid.SetColumn(x, 0);
+                        Grid.SetRow(x, 0);
                         x.Background = Brushes.Coral;
                     }
                 ),
                 BorderX(
                     configure: x => {
-                        Grid.SetColumn(x, 1);
+                        Grid.SetRow(x, 1);
                         x.Background = Brushes.White;
                         _border = x;
                     },
@@ -64,7 +64,7 @@ public class MainWindow : Window
                 ),
                 BorderX(
                     configure: x => {
-                        Grid.SetColumn(x, 2);
+                        Grid.SetRow(x, 2);
                         x.Background = BrushX(64,64,255);
                     }
                 )

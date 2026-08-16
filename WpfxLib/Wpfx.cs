@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace UserExtensions;
@@ -265,19 +266,25 @@ public static class Wpfx
 
     //------------------------------------------------------------
     // STYLE
-
-    public static Style StyleX<T>(Style? basedOn = null, Setter[]? setters = null) where T : Control
+        
+    public static Style StyleX<T>(Style? basedOn = null, Setter[]? setters = null, TriggerBase[]? triggers = null) where T : Control
     {
         var style = new Style(typeof(T), basedOn);
 
         if (setters != null)
         {
-            foreach (var s in setters)
-                style.Setters.Add(
-                    s.TargetName == null
-                        ? new Setter(s.Property, s.Value)
-                        : new Setter(s.Property, s.Value, s.TargetName)
-                );
+            foreach (var setter in setters)
+            {
+                style.Setters.Add(setter);
+            }
+        }
+
+        if (triggers != null)
+        {
+            foreach (var trigger in triggers)
+            {
+                style.Triggers.Add(trigger);
+            }
         }
 
         return style;
@@ -292,18 +299,116 @@ public static class Wpfx
             Property = property,
             Value = value 
         };
-
+       
         if (setters != null)
         {
-            foreach (var s in setters)
-                trigger.Setters.Add(
-                    s.TargetName == null
-                        ? new Setter(s.Property, s.Value)
-                        : new Setter(s.Property, s.Value, s.TargetName)
-                );
+            foreach (var setter in setters)
+            {
+                trigger.Setters.Add(setter);
+            }
         }
 
         return trigger;
+    }
+
+    public static Condition ConditionX(DependencyProperty property, object value)
+    {
+        var condition = new Condition
+        {
+            Property = property,
+            Value = value
+        };
+               
+        return condition;
+    }
+
+    public static MultiTrigger MultiTriggerX(Condition[]? conditions, Setter[]? setters = null)
+    {
+        var mulitTrigger = new MultiTrigger();
+
+        if (conditions != null)
+        {
+            foreach (var condition in conditions)
+            {
+                mulitTrigger.Conditions.Add(condition);
+            }
+        }
+
+        if (setters != null)
+        {
+            foreach (var setter in setters)
+            {
+                mulitTrigger.Setters.Add(setter);
+            }
+        }
+
+        return mulitTrigger;
+    }
+
+    public static EventTrigger EventTriggerX(RoutedEvent routedEvent, TriggerAction[]? actions = null)
+    {
+        var trigger = new EventTrigger(routedEvent);
+
+        if (actions != null)
+        {
+            foreach (var action in actions)
+            {
+                trigger.Actions.Add(action);
+            }
+        }
+
+        return trigger;
+    }
+
+    public static BeginStoryboard BeginStoryboardX(Storyboard storyboard) 
+    {
+        var beginStoryboard = new BeginStoryboard
+        {
+            Storyboard = storyboard,
+        };
+
+        return beginStoryboard;
+    }
+
+    public static Storyboard StoryboardX(TimelineCollection children)
+    {
+        var storyboard = new Storyboard();
+
+        foreach (var child in children)
+        {
+            storyboard.Children.Add(child);
+        }
+
+        return storyboard;
+    }
+
+    public static DoubleAnimation DoubleAnimationX(
+        Duration duration, 
+        double? from = null, 
+        double? to = null, 
+        EasingFunctionBase? easingFunction = null,
+        string? targetName = null,
+        object? targetProperty = null)
+    {
+        var doubleAnimation = new DoubleAnimation
+        {
+            From = from,
+            To = to,
+            Duration = duration,
+            EasingFunction = easingFunction
+        };
+
+        if (targetName != null)
+        {
+            Storyboard.SetTargetName(doubleAnimation, targetName);
+        }
+
+        if (targetProperty != null)
+        {
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(targetProperty));
+        }
+
+        return doubleAnimation;
     }
 
     public static ControlTemplate ControlTemplateX<T>(FrameworkElementFactory visualTree, Trigger[]? triggers = null) where T : Control

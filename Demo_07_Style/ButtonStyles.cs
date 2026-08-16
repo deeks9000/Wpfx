@@ -9,7 +9,6 @@ public static class ButtonStyles
 {
     public static ResourceDictionary Build()
     {
-        // ---- Visual Tree ----
         var visualTree = FrameworkElementFactoryX<Border>(
             name: "PART_Border",
             setters: [

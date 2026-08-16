@@ -11,16 +11,15 @@ public static class Program
     {
         var app = new Application();
 
-        app.Resources = BuildAppResourceDictionary();
+        app.Resources = BuildAppResources();
 
         var win = new MainWindow();
 
         app.Run(win);
     }
 
-    public static ResourceDictionary BuildAppResourceDictionary()
+    public static ResourceDictionary BuildAppResources()
     {
-        // ---- Visual Tree ----
         var visualTree = FrameworkElementFactoryX<Border>(
             name: "PART_Border",
             setters: [
@@ -65,7 +64,7 @@ public static class Program
         );
 
         ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("ButtonTemplate", template);
+        dict.Add("AppButtonTemplate", template);
 
         return dict;
     }
