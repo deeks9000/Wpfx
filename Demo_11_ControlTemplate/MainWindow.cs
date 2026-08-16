@@ -16,7 +16,7 @@ public class MainWindow : Window
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Width = 800;
         Height = 450;
-        Resources = BuildLocalResourceDictionary();
+        Resources = BuildWindowResources();
         Content = Build();
     }
 
@@ -35,7 +35,7 @@ public class MainWindow : Window
                         x.Background = BrushFromStringX("#88DDFF");
                         x.BorderThickness = ThicknessX(0);
                         x.Cursor = Cursors.Hand;
-                        x.Template = TryFindResource("ButtonTemplate") as ControlTemplate ?? x.Template;
+                        x.Template = TryFindResource("AppButtonTemplate") as ControlTemplate ?? x.Template;
 
                         x.Click += (s,e) => {
                             _count++;
@@ -61,7 +61,7 @@ public class MainWindow : Window
                         x.Background = BrushFromStringX("#88FFDD");
                         x.BorderThickness = ThicknessX(0,0,0,2);
                         x.Cursor = Cursors.Hand;
-                        x.Template = TryFindResource("LocalButtonTemplate") as ControlTemplate ?? x.Template;
+                        x.Template = TryFindResource("WindowButtonTemplate") as ControlTemplate ?? x.Template;
 
                         x.Click += (s,e) => {
                             _count++;
@@ -73,9 +73,8 @@ public class MainWindow : Window
         );
     }
 
-    public static ResourceDictionary BuildLocalResourceDictionary()
+    public ResourceDictionary BuildWindowResources()
     {
-        // ---- Visual Tree ----
         var visualTree = FrameworkElementFactoryX<Border>(
             name: "PART_Border",
             setters: [
@@ -120,7 +119,7 @@ public class MainWindow : Window
         );
 
         ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("LocalButtonTemplate", template);
+        dict.Add("WindowButtonTemplate", template);
 
         return dict;
     }
