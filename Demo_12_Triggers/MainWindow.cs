@@ -8,9 +8,9 @@ namespace Demo_12_Triggers;
 
 public class MainWindow : Window
 {
-    SolidColorBrush animatedBrush = new SolidColorBrush();
-    ColorAnimation upColorAnimation = new ColorAnimation();
-    ColorAnimation downColorAnimation = new ColorAnimation();
+    private SolidColorBrush animatedBrush = new SolidColorBrush();
+    private ColorAnimation upColorAnimation = new ColorAnimation();
+    private ColorAnimation downColorAnimation = new ColorAnimation();
 
     public MainWindow()
     {
