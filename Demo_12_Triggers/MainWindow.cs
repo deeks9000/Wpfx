@@ -12,19 +12,29 @@ public class MainWindow : Window
     private ColorAnimation upColorAnimation = new ColorAnimation();
     private ColorAnimation downColorAnimation = new ColorAnimation();
 
+    private SolidColorBrush textBrush = new SolidColorBrush();
+    private ColorAnimation upTextColorAnimation = new ColorAnimation();
+    private ColorAnimation downTextColorAnimation = new ColorAnimation();
+
+    private DoubleAnimation upWidthDoubleAnimation = new DoubleAnimation();
+    private DoubleAnimation downWidthDoubleAnimation = new DoubleAnimation();
+    private DoubleAnimation upHeightDoubleAnimation = new DoubleAnimation();
+    private DoubleAnimation downHeightDoubleAnimation = new DoubleAnimation();
+
     public MainWindow()
     {
-        InitializeColorAnimations();
-                
+        InitializeEventTriggerAnimations();
+        InitializeEventAnimations();
+
         Title = "Demo 12 Triggers";
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Width = 800;
-        Height = 500;
+        Height = 600;
         Resources = BuildWindowResources();
         Content = Build();
     }
 
-    private void InitializeColorAnimations()
+    private void InitializeEventTriggerAnimations()
     {
         NameScope.SetNameScope(this, new NameScope());
         RegisterName("AnimatedBrush", animatedBrush);
@@ -40,6 +50,29 @@ public class MainWindow : Window
         downColorAnimation.Duration = TimeSpan.FromSeconds(1);
         Storyboard.SetTargetName(downColorAnimation, "AnimatedBrush");
         Storyboard.SetTargetProperty(downColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
+    }
+
+    private void InitializeEventAnimations()
+    {
+        textBrush.Color = Colors.Black;
+
+        upTextColorAnimation.To = Colors.Magenta;
+        upTextColorAnimation.Duration = TimeSpan.FromSeconds(1);
+
+        downTextColorAnimation.To = Colors.Black;
+        downTextColorAnimation.Duration = TimeSpan.FromSeconds(1);
+
+        upWidthDoubleAnimation.To = 400d;
+        upWidthDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
+
+        downWidthDoubleAnimation.To = 300d;
+        downWidthDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
+
+        upHeightDoubleAnimation.To = 80d;
+        upHeightDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
+
+        downHeightDoubleAnimation.To = 40d;
+        downHeightDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
     }
 
     private UIElement Build()
@@ -91,7 +124,7 @@ public class MainWindow : Window
                 TextBlockX(
                     configure: x => {
                         x.Margin = ThicknessX(10);
-                        x.Text = "Button with added triggers:";
+                        x.Text = "Button animation with Triggers:";
                     }
                 ),
                 ButtonX(
@@ -140,10 +173,40 @@ public class MainWindow : Window
                         );
                     }
                 ),
+                TextBlockX(
+                    configure: x => {
+                        x.Margin = ThicknessX(10);
+                        x.Text = "Button animation with Event Handers:";
+                    }
+                ),
+                ButtonX(
+                    configure: x => {
+                        x.Content = "Click me, wait, then leave";
+                        x.FontSize = 18;
+                        x.FontWeight = FontWeights.Bold;
+                        x.Margin = ThicknessX(10);
+                        x.Padding = ThicknessX(5);
+                        x.Width = 300;
+                        x.Height = 40;
+                        x.Foreground = textBrush;
+
+                        x.Click += (s,e) => {
+                            x.BeginAnimation(Button.WidthProperty, upWidthDoubleAnimation);
+                            x.BeginAnimation(Button.HeightProperty, upHeightDoubleAnimation);
+                            textBrush.BeginAnimation(SolidColorBrush.ColorProperty, upTextColorAnimation);
+                        };
+
+                        x.MouseLeave += (s,e) => {
+                            x.BeginAnimation(Button.WidthProperty, downWidthDoubleAnimation);
+                            x.BeginAnimation(Button.HeightProperty, downHeightDoubleAnimation);
+                            textBrush.BeginAnimation(SolidColorBrush.ColorProperty, downTextColorAnimation);
+                        };
+                    }
+                )
             ]
         );
     }
-
+  
     public ResourceDictionary BuildWindowResources()
     {
         //------------------------------------------------------------
@@ -184,7 +247,7 @@ public class MainWindow : Window
         //------------------------------------------------------------
         // [2] ButtonMultiTriggerStyle
 
-        var buttonMultiTriggerStyle = StyleX<Button>(            
+        var buttonMultiTriggerStyle = StyleX<Button>(
             setters: [
                 SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
             ],
@@ -198,7 +261,7 @@ public class MainWindow : Window
                         SetterX(Control.ForegroundProperty, Brushes.OrangeRed),
                         SetterX(Control.FontSizeProperty, 18d),
                     ]
-                ),               
+                ),
             ]
         );
 
@@ -211,7 +274,7 @@ public class MainWindow : Window
                 SetterX(Control.FontSizeProperty, 18d),
                 SetterX(Control.FontWeightProperty, FontWeights.Bold),
             ],
-            triggers: [                
+            triggers: [
                 EventTriggerX(
                     routedEvent: Mouse.MouseEnterEvent,
                     actions: [
@@ -242,7 +305,7 @@ public class MainWindow : Window
                         BeginStoryboardX(
                             StoryboardX(
                                 children: [
-                                    DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 28d, targetProperty: Control.FontSizeProperty)                                    
+                                    DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 28d, targetProperty: Control.FontSizeProperty)
                                 ]
                             )
                         )
@@ -260,5 +323,4 @@ public class MainWindow : Window
 
         return dict;
     }
-
 }
