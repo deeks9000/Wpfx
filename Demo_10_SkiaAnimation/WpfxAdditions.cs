@@ -2,7 +2,7 @@
 
 namespace UserExtensions;
 
-public static class WpfxSkia
+public static class WpfxAdditions
 {   
     public static SKElement SKElementX(Action<SKElement>? configure = null)
     {
@@ -11,4 +11,3 @@ public static class WpfxSkia
         return element;
     }       
 }
-

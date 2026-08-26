@@ -74,7 +74,7 @@ WPFX encourages writing UI logic directly alongside the control it belongs to, f
 ## Requirements
 
 * Windows
-* .NET 8 SDK (or later)
+* .NET 10 SDK (or later)
 * WPF
 
 ---
