@@ -103,8 +103,8 @@ public class MainWindow : Window
                                     BeginStoryboardX(
                                         StoryboardX(
                                             children: [
-                                                DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 400d, targetProperty: Button.WidthProperty),
-                                                DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 80d, targetProperty: Button.HeightProperty)
+                                                DoubleAnimationX(duration: TimeSpan.FromMilliseconds(100), to: 400d, targetProperty: Button.WidthProperty),
+                                                DoubleAnimationX(duration: TimeSpan.FromMilliseconds(100), to: 80d, targetProperty: Button.HeightProperty)
                                             ]
                                         )
                                     )
@@ -221,7 +221,7 @@ public class MainWindow : Window
                         BeginStoryboardX(
                             StoryboardX(
                                 children: [
-                                    DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 24d, targetProperty: Control.FontSizeProperty)
+                                    DoubleAnimationX(duration: TimeSpan.FromMilliseconds(100), to: 24d, targetProperty: Control.FontSizeProperty)
                                 ]
                             )
                         )
@@ -245,7 +245,7 @@ public class MainWindow : Window
                         BeginStoryboardX(
                             StoryboardX(
                                 children: [
-                                    DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 28d, targetProperty: Control.FontSizeProperty)
+                                    DoubleAnimationX(duration: TimeSpan.FromMilliseconds(100), to: 28d, targetProperty: Control.FontSizeProperty)
                                 ]
                             )
                         )
