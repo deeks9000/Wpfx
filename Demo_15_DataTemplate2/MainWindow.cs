@@ -117,9 +117,9 @@ public class MainWindow : Window
                     b.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(ListBoxItem), 1);
                     b.Converter = new IsSelectedBackgroundConverter();
                 }))
-           ],
-           children: [
-               FrameworkElementFactoryX<StackPanel>(
+            ],
+            children: [
+                FrameworkElementFactoryX<StackPanel>(
                     setters: [
                         SetterX(StackPanel.OrientationProperty, Orientation.Vertical)
                     ],
@@ -145,7 +145,7 @@ public class MainWindow : Window
                         )
                     ]
                 )
-           ]
+            ]
         );
 
         return DataTemplateX<Cat>(visualTree);
