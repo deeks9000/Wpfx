@@ -32,26 +32,31 @@ public class MainWindow : Window
                 x.AddColumn();
             },
             children: [
-                GridX(
-                    configure: x => {
-                        Grid.SetColumn(x, 0);
-                    },
-                    children: [
-                        ListBoxX(
-                            configure: x => {
-                                x.ItemsSource = vm.Persons;
-                                x.ItemTemplate = BuildPersonDataTemplate();
-                                x.Margin = ThicknessX(0);
-                                x.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                                x.HorizontalAlignment = HorizontalAlignment.Stretch;
-                                x.BorderThickness = ThicknessX(0);
-                                x.SetBinding(ListBox.SelectedItemProperty, BindingX(nameof(vm.SelectedPerson)));
-                            }
-                        )
-                    ]
-                ),
+                BuildPersonList(column: 0),
                 BuildGridSplitter(column: 1),
                 BuildPersonDetails(column: 2)
+            ]
+        );
+    }
+
+    private UIElement BuildPersonList(int column)
+    {
+        return GridX(
+            configure: x => {
+                Grid.SetColumn(x, column);
+            },
+            children: [
+                ListBoxX(
+                    configure: x => {
+                        x.ItemsSource = vm.Persons;
+                        x.ItemTemplate = BuildPersonDataTemplate();
+                        x.Margin = ThicknessX(0);
+                        x.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                        x.HorizontalAlignment = HorizontalAlignment.Stretch;
+                        x.BorderThickness = ThicknessX(0);
+                        x.SetBinding(ListBox.SelectedItemProperty, BindingX(nameof(vm.SelectedPerson)));
+                    }
+                )
             ]
         );
     }
