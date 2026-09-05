@@ -222,8 +222,6 @@ public class MainWindow : Window
             ]
         );
 
-        var dataTemplate = DataTemplateX<Person>(visualTree);
-
-        return dataTemplate;
+        return DataTemplateX<Person>(visualTree);
     }
 }

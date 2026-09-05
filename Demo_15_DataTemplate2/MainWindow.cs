@@ -148,9 +148,6 @@ public class MainWindow : Window
            ]
         );
 
-        var dataTemplate = DataTemplateX<Cat>(visualTree);
-
-        return dataTemplate;
+        return DataTemplateX<Cat>(visualTree);
     }
 }
-

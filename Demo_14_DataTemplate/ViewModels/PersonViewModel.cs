@@ -18,7 +18,7 @@ public class PersonViewModel : INotifyPropertyChanged
 
     private void BuildPersons()
     {
-        Person[] personArray = new[] {
+        Person[] personArray = [
             new Person { FirstName = "Ellen", LastName="Ripley", Email = "ellen@weyland-yutani.com", Code = "180924609", Department="Nostromo" },
             new Person { FirstName = "Bruce", LastName="Wayne", Email = "bruce@wayne-industries.com", Code = "Batman", Department="Gotham City" },
             new Person { FirstName = "Luke", LastName="Skywalker", Email = "luke@force.net", Code = "R2-D2", Department="Jedi" },
@@ -45,7 +45,7 @@ public class PersonViewModel : INotifyPropertyChanged
             new Person { FirstName = "Dave", LastName="Lister", Email = "dave@jupitermining.com", Code = "Lager", Department="Red Dwarf" },
             new Person { FirstName = "Otto", LastName="Octavius", Email = "doc@octopus.org", Code = "8", Department="Science" },
             new Person { FirstName = "Dennis", LastName="Nedry", Email = "dennis@ingen.com", Code = "DNA", Department="Software" },
-        };
+        ];
 
         Persons = new ObservableCollection<Person>(personArray.OrderBy(p => p.LastName));
     }
