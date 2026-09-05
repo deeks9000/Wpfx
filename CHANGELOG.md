@@ -3,6 +3,18 @@
 All notable changes to this project are documented here.
 
 
+## 0.1.0-alpha.11 — 2026-09-05
+
+### Highlights
+- `DataTemplate` demo apps: `Demo_14_DataTemplate` & `Demo_15_DataTemplate2`
+- Better organised and easier to read fragments of UI sections with their own `BuildXyz()` function, called from within the main UI tree
+- Simplified the Triggers / EventAnimations demo apps 
+- Improved local window resources with strong type returning functions rather than use a local `ResourceDictionary`
+
+### Features
+- WPFX: Added `DataTemplateX`
+
+
 ## 0.1.0-alpha.10 — 2026-08-26
 
 ### Highlights

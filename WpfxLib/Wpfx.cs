@@ -214,16 +214,12 @@ public static class Wpfx
     {
         Color color = (Color)ColorConverter.ConvertFromString(str);
         Brush brush = new SolidColorBrush(color);
-        if (brush.CanFreeze) 
-            brush.Freeze();
         return brush;
     }
 
     public static Brush BrushX(byte red, byte green, byte blue)
     {
-        Color color = Color.FromRgb(red, green, blue);
-        Brush brush = new SolidColorBrush(color);
-        return brush;
+        return new SolidColorBrush(Color.FromRgb(red, green, blue));
     }
 
     public static string PathStringX<T, TValue>(Expression<Func<T, TValue>> expr)
@@ -265,8 +261,30 @@ public static class Wpfx
 
 
     //------------------------------------------------------------
+    // DATA TEMPLATE
+
+    public static DataTemplate DataTemplateX<T>(FrameworkElementFactory visualTree, Trigger[]? triggers = null)
+    {
+        var template = new DataTemplate(typeof(T))
+        {
+            VisualTree = visualTree
+        };
+
+        if (triggers != null)
+        {
+            foreach (var trigger in triggers)
+            {
+                template.Triggers.Add(trigger);
+            }
+        }
+
+        return template;
+    }
+
+
+    //------------------------------------------------------------
     // STYLE
-        
+
     public static Style StyleX<T>(Style? basedOn = null, Setter[]? setters = null, TriggerBase[]? triggers = null) where T : Control
     {
         var style = new Style(typeof(T), basedOn);

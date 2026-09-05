@@ -11,5 +11,8 @@
   <Project Path="Demo_10_SkiaAnimation/Demo_10_SkiaAnimation.csproj" />
   <Project Path="Demo_11_ControlTemplate/Demo_11_ControlTemplate.csproj" />
   <Project Path="Demo_12_Triggers/Demo_12_Triggers.csproj" />
+  <Project Path="Demo_13_EventAnimations/Demo_13_EventAnimations.csproj" />
+  <Project Path="Demo_14_DataTemplate/Demo_14_DataTemplate.csproj" />
+  <Project Path="Demo_15_DataTemplate2/Demo_15_DataTemplate2.csproj" />
   <Project Path="WpfxLib/WpfxLib.csproj" />
 </Solution>

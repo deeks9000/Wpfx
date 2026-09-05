@@ -8,146 +8,103 @@ namespace Demo_12_Triggers;
 
 public class MainWindow : Window
 {
-    private SolidColorBrush animatedBrush = new SolidColorBrush();
+    private SolidColorBrush animatedBrush = new SolidColorBrush(Colors.Black);
     private ColorAnimation upColorAnimation = new ColorAnimation();
     private ColorAnimation downColorAnimation = new ColorAnimation();
-
-    private SolidColorBrush textBrush = new SolidColorBrush();
-    private ColorAnimation upTextColorAnimation = new ColorAnimation();
-    private ColorAnimation downTextColorAnimation = new ColorAnimation();
-
-    private DoubleAnimation upWidthDoubleAnimation = new DoubleAnimation();
-    private DoubleAnimation downWidthDoubleAnimation = new DoubleAnimation();
-    private DoubleAnimation upHeightDoubleAnimation = new DoubleAnimation();
-    private DoubleAnimation downHeightDoubleAnimation = new DoubleAnimation();
 
     public MainWindow()
     {
         InitializeEventTriggerAnimations();
-        InitializeEventAnimations();
 
         Title = "Demo 12 Triggers";
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Width = 800;
         Height = 600;
-        Resources = BuildWindowResources();
         Content = Build();
     }
 
     private void InitializeEventTriggerAnimations()
     {
         NameScope.SetNameScope(this, new NameScope());
-        RegisterName("AnimatedBrush", animatedBrush);
-
-        animatedBrush.Color = Colors.Black;
+        RegisterName("AnimatedBrush", animatedBrush);        
 
         upColorAnimation.To = Colors.DarkOrange;
-        upColorAnimation.Duration = TimeSpan.FromSeconds(1);
+        upColorAnimation.Duration = TimeSpan.FromMilliseconds(200);
         Storyboard.SetTargetName(upColorAnimation, "AnimatedBrush");
         Storyboard.SetTargetProperty(upColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
 
         downColorAnimation.To = Colors.Black;
-        downColorAnimation.Duration = TimeSpan.FromSeconds(1);
+        downColorAnimation.Duration = TimeSpan.FromMilliseconds(1000);
         Storyboard.SetTargetName(downColorAnimation, "AnimatedBrush");
         Storyboard.SetTargetProperty(downColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
-    }
-
-    private void InitializeEventAnimations()
-    {
-        textBrush.Color = Colors.Black;
-
-        upTextColorAnimation.To = Colors.Magenta;
-        upTextColorAnimation.Duration = TimeSpan.FromSeconds(1);
-
-        downTextColorAnimation.To = Colors.Black;
-        downTextColorAnimation.Duration = TimeSpan.FromSeconds(1);
-
-        upWidthDoubleAnimation.To = 400d;
-        upWidthDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
-
-        downWidthDoubleAnimation.To = 300d;
-        downWidthDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
-
-        upHeightDoubleAnimation.To = 80d;
-        upHeightDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
-
-        downHeightDoubleAnimation.To = 40d;
-        downHeightDoubleAnimation.Duration = TimeSpan.FromSeconds(0.1);
-    }
+    }        
 
     private UIElement Build()
     {
-        return StackPanelX(
-            children: [
-                TextBlockX(
-                    configure: x => {
-                        x.Margin = ThicknessX(10);
-                        x.Text = "Button Style with Trigger:";
-                    }
-                ),
+        return GridX(
+            configure: x => {
+                x.AddRow();
+                x.AddRow();
+                x.AddRow();
+                x.AddRow();
+            },
+            children: [                
                 ButtonX(
                     configure: x => {
-                        x.Content = "Button Style with Trigger";
+                        Grid.SetRow(x, 0);
+                        x.Content = "Button with Trigger Style";
                         x.Margin = ThicknessX(10);
                         x.Padding = ThicknessX(5);
-                        x.Style = TryFindResource("ButtonTriggerStyle") as Style;
+                        x.HorizontalAlignment = HorizontalAlignment.Center;
+                        x.VerticalAlignment = VerticalAlignment.Center;
+                        x.Style = BuildButtonTriggerStyle();
                     }
-                ),
-                TextBlockX(
-                    configure: x => {
-                        x.Margin = ThicknessX(10);
-                        x.Text = "Button Style with MultiTrigger:";
-                    }
-                ),
+                ),                               
                 ButtonX(
                     configure: x => {
-                        x.Content = "Button Style with MultiTrigger";
+                        Grid.SetRow(x, 1);
+                        x.Content = "Button with MultiTrigger Style";
                         x.Margin = ThicknessX(10);
                         x.Padding = ThicknessX(5);
-                        x.Style = TryFindResource("ButtonMultiTriggerStyle") as Style;
+                        x.HorizontalAlignment = HorizontalAlignment.Center;
+                        x.VerticalAlignment = VerticalAlignment.Center;
+                        x.Style = BuildButtonMultiTriggerStyle();
                     }
-                ),
-                TextBlockX(
-                    configure: x => {
-                        x.Margin = ThicknessX(10);
-                        x.Text = "Button Style with EventTrigger:";
-                    }
-                ),
+                ),                                
                 ButtonX(
                     configure: x => {
-                        x.Content = "Button Style with EventTrigger";
+                        Grid.SetRow(x, 2);
+                        x.Content = "Button with EventTrigger Style";
                         x.Margin = ThicknessX(10);
                         x.Padding = ThicknessX(5);
-                        x.Style = TryFindResource("ButtonEventTriggerStyle") as Style;
+                        x.HorizontalAlignment = HorizontalAlignment.Center;
+                        x.VerticalAlignment = VerticalAlignment.Center;
+                        x.Style = BuildButtonEventTriggerStyle();
                     }
-                ),
-                TextBlockX(
-                    configure: x => {
-                        x.Margin = ThicknessX(10);
-                        x.Text = "Button animation with Triggers:";
-                    }
-                ),
+                ),                               
                 ButtonX(
                     configure: x => {
+                        Grid.SetRow(x, 3);
                         x.Content = "Click me, wait, then leave";
                         x.FontSize = 18;
                         x.FontWeight = FontWeights.Bold;
                         x.Margin = ThicknessX(10);
                         x.Padding = ThicknessX(5);
+                        x.HorizontalAlignment = HorizontalAlignment.Center;
+                        x.VerticalAlignment = VerticalAlignment.Center;
                         x.Width = 300;
                         x.Height = 40;
                         x.Foreground = animatedBrush;
 
                         x.Triggers.Add(
                             EventTriggerX(
-                                routedEvent: Button.ClickEvent,
+                                routedEvent: Mouse.MouseEnterEvent,
                                 actions: [
                                     BeginStoryboardX(
                                         StoryboardX(
                                             children: [
                                                 DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 400d, targetProperty: Button.WidthProperty),
-                                                DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 80d, targetProperty: Button.HeightProperty),
-                                                upColorAnimation
+                                                DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 80d, targetProperty: Button.HeightProperty)
                                             ]
                                         )
                                     )
@@ -162,8 +119,8 @@ public class MainWindow : Window
                                     BeginStoryboardX(
                                         StoryboardX(
                                             children: [
-                                                DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 300d, targetProperty: Button.WidthProperty),
-                                                DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), to: 40d, targetProperty: Button.HeightProperty),
+                                                DoubleAnimationX(duration: TimeSpan.FromMilliseconds(200), to: 300d, targetProperty: Button.WidthProperty),
+                                                DoubleAnimationX(duration: TimeSpan.FromMilliseconds(200), to: 40d, targetProperty: Button.HeightProperty),
                                                 downColorAnimation
                                             ]
                                         )
@@ -171,48 +128,30 @@ public class MainWindow : Window
                                 ]
                             )
                         );
-                    }
-                ),
-                TextBlockX(
-                    configure: x => {
-                        x.Margin = ThicknessX(10);
-                        x.Text = "Button animation with Event Handers:";
-                    }
-                ),
-                ButtonX(
-                    configure: x => {
-                        x.Content = "Click me, wait, then leave";
-                        x.FontSize = 18;
-                        x.FontWeight = FontWeights.Bold;
-                        x.Margin = ThicknessX(10);
-                        x.Padding = ThicknessX(5);
-                        x.Width = 300;
-                        x.Height = 40;
-                        x.Foreground = textBrush;
 
-                        x.Click += (s,e) => {
-                            x.BeginAnimation(Button.WidthProperty, upWidthDoubleAnimation);
-                            x.BeginAnimation(Button.HeightProperty, upHeightDoubleAnimation);
-                            textBrush.BeginAnimation(SolidColorBrush.ColorProperty, upTextColorAnimation);
-                        };
-
-                        x.MouseLeave += (s,e) => {
-                            x.BeginAnimation(Button.WidthProperty, downWidthDoubleAnimation);
-                            x.BeginAnimation(Button.HeightProperty, downHeightDoubleAnimation);
-                            textBrush.BeginAnimation(SolidColorBrush.ColorProperty, downTextColorAnimation);
-                        };
+                        x.Triggers.Add(
+                            EventTriggerX(
+                                routedEvent: Button.ClickEvent,
+                                actions: [
+                                    BeginStoryboardX(
+                                        StoryboardX(
+                                            children: [
+                                                upColorAnimation
+                                            ]
+                                        )
+                                    )
+                                ]
+                            )
+                        );
                     }
                 )
             ]
         );
-    }
-  
-    public ResourceDictionary BuildWindowResources()
-    {
-        //------------------------------------------------------------
-        // [1] ButtonTriggerStyle
+    }      
 
-        var buttonTriggerStyle = StyleX<Button>(
+    public Style BuildButtonTriggerStyle()
+    {
+        return StyleX<Button>(
             setters: [
                 SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
                 SetterX(Control.FontSizeProperty, 18d),
@@ -238,18 +177,18 @@ public class MainWindow : Window
                     value: true,
                     setters: [
                         SetterX(Control.ForegroundProperty, Brushes.OrangeRed),
-                        //SetterX(Control.BackgroundProperty, Brushes.Green),       // Doesn't work! BackgroundProperty is not template-bound to a standard Button ControlTemplate
                     ]
                 ),
             ]
         );
+    }
 
-        //------------------------------------------------------------
-        // [2] ButtonMultiTriggerStyle
-
-        var buttonMultiTriggerStyle = StyleX<Button>(
+    public Style BuildButtonMultiTriggerStyle()
+    {
+        return StyleX<Button>(
             setters: [
                 SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
+                SetterX(Control.FontSizeProperty, 14d),
             ],
             triggers: [
                 MultiTriggerX(
@@ -259,16 +198,17 @@ public class MainWindow : Window
                     ],
                     setters: [
                         SetterX(Control.ForegroundProperty, Brushes.OrangeRed),
-                        SetterX(Control.FontSizeProperty, 18d),
+                        SetterX(Control.FontSizeProperty, 16d),
+                        SetterX(Control.FontWeightProperty, FontWeights.Bold),
                     ]
                 ),
             ]
-        );
+        );       
+    }
 
-        //------------------------------------------------------------
-        // [3] ButtonEventTriggerStyle
-
-        var buttonEventTriggerStyle = StyleX<Button>(
+    public Style BuildButtonEventTriggerStyle()
+    {
+        return StyleX<Button>(
             setters: [
                 SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
                 SetterX(Control.FontSizeProperty, 18d),
@@ -293,7 +233,7 @@ public class MainWindow : Window
                         BeginStoryboardX(
                             StoryboardX(
                                 children: [
-                                    DoubleAnimationX(duration: TimeSpan.FromSeconds(0.1), targetProperty: Control.FontSizeProperty)
+                                    DoubleAnimationX(duration: TimeSpan.FromMilliseconds(200), targetProperty: Control.FontSizeProperty)
                                 ]
                             )
                         )
@@ -313,14 +253,5 @@ public class MainWindow : Window
                 )
             ]
         );
-
-        //------------------------------------------------------------
-
-        ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("ButtonTriggerStyle", buttonTriggerStyle);
-        dict.Add("ButtonMultiTriggerStyle", buttonMultiTriggerStyle);
-        dict.Add("ButtonEventTriggerStyle", buttonEventTriggerStyle);
-
-        return dict;
     }
 }
