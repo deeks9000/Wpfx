@@ -80,11 +80,11 @@ public class MainWindow : Window
                             x.Margin = ThicknessX(10);
                             x.HorizontalAlignment = HorizontalAlignment.Left;
                             x.VerticalAlignment = VerticalAlignment.Center;
-                            x.SetBinding(TextBox.TextProperty, MultiBindingX(m => {
-                                m.Bindings.Add(BindingX(nameof(vm.FirstName)));
-                                m.Bindings.Add(BindingX(nameof(vm.MiddleName)));
-                                m.Bindings.Add(BindingX(nameof(vm.LastName)));
-                                m.StringFormat = "First: {0}, Middle: {1}, Last: {2}";
+                            x.SetBinding(TextBox.TextProperty, MultiBindingX(mb => {
+                                mb.Bindings.Add(BindingX(nameof(vm.FirstName)));
+                                mb.Bindings.Add(BindingX(nameof(vm.MiddleName)));
+                                mb.Bindings.Add(BindingX(nameof(vm.LastName)));
+                                mb.StringFormat = "First: {0}, Middle: {1}, Last: {2}";
                             }));
                         }
                     )

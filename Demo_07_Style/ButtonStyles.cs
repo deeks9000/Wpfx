@@ -29,7 +29,7 @@ public static class ButtonStyles
             ]
         );
 
-        var template = ControlTemplateX<Button>(
+        var controlTemplate = ControlTemplateX<Button>(
             visualTree: visualTree,
             triggers: [
                 TriggerX(
@@ -54,7 +54,7 @@ public static class ButtonStyles
         var defaultButtonStyle = StyleX<Button>(
             setters: [
                 SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
-                SetterX(Control.TemplateProperty, template),
+                SetterX(Control.TemplateProperty, controlTemplate),
             ]
         );
 

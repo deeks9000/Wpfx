@@ -41,7 +41,7 @@ public static class Program
             ]
         );
 
-        var template = ControlTemplateX<Button>(
+        var controlTemplate = ControlTemplateX<Button>(
             visualTree: visualTree,
             triggers: [
                 TriggerX(
@@ -64,7 +64,7 @@ public static class Program
         );
 
         ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("AppButtonTemplate", template);
+        dict.Add("AppButtonTemplate", controlTemplate);
 
         return dict;
     }

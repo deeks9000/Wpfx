@@ -16,11 +16,10 @@ public class MainWindow : Window
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Width = 800;
         Height = 450;
-        Resources = BuildWindowResources();
         Content = Build();
     }
 
-    public UIElement Build()
+    private UIElement Build()
     {
         return StackPanelX(
             children: [
@@ -61,7 +60,7 @@ public class MainWindow : Window
                         x.Background = BrushFromStringX("#88FFDD");
                         x.BorderThickness = ThicknessX(0,0,0,2);
                         x.Cursor = Cursors.Hand;
-                        x.Template = TryFindResource("WindowButtonTemplate") as ControlTemplate ?? x.Template;
+                        x.Template = BuildButtonTemplate();
 
                         x.Click += (s,e) => {
                             _count++;
@@ -71,9 +70,9 @@ public class MainWindow : Window
                 ),
             ]
         );
-    }
+    }        
 
-    public ResourceDictionary BuildWindowResources()
+    private ControlTemplate BuildButtonTemplate()
     {
         var visualTree = FrameworkElementFactoryX<Border>(
             name: "PART_Border",
@@ -96,7 +95,7 @@ public class MainWindow : Window
             ]
         );
 
-        var template = ControlTemplateX<Button>(
+        return ControlTemplateX<Button>(
             visualTree: visualTree,
             triggers: [
                 TriggerX(
@@ -117,10 +116,5 @@ public class MainWindow : Window
                 )
             ]
         );
-
-        ResourceDictionary dict = new ResourceDictionary();
-        dict.Add("WindowButtonTemplate", template);
-
-        return dict;
     }
 }
