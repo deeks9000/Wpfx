@@ -149,7 +149,7 @@ public class MainWindow : Window
         );
     }
 
-    public Style BuildButtonTriggerStyle()
+    private Style BuildButtonTriggerStyle()
     {
         return StyleX<Button>(
             setters: [
@@ -183,7 +183,7 @@ public class MainWindow : Window
         );
     }
 
-    public Style BuildButtonMultiTriggerStyle()
+    private Style BuildButtonMultiTriggerStyle()
     {
         return StyleX<Button>(
             setters: [
@@ -206,7 +206,7 @@ public class MainWindow : Window
         );
     }
 
-    public Style BuildButtonEventTriggerStyle()
+    private Style BuildButtonEventTriggerStyle()
     {
         return StyleX<Button>(
             setters: [

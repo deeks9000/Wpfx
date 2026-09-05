@@ -23,7 +23,7 @@ public class MainWindow : Window
         Content = Build();
     }
 
-    public UIElement Build()
+    private UIElement Build()
     {
         return GridX(
             configure: x => {
@@ -56,7 +56,7 @@ public class MainWindow : Window
         );
     }
 
-    public UIElement BuildGridSplitter(int column)
+    private UIElement BuildGridSplitter(int column)
     {
         return GridSplitterX(
             configure: x => {
@@ -81,7 +81,7 @@ public class MainWindow : Window
         );
     }
 
-    public UIElement BuildPersonDetails(int column)
+    private UIElement BuildPersonDetails(int column)
     {
         return GridX(
             configure: x => {

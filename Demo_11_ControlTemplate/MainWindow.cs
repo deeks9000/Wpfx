@@ -19,7 +19,7 @@ public class MainWindow : Window
         Content = Build();
     }
 
-    public UIElement Build()
+    private UIElement Build()
     {
         return StackPanelX(
             children: [
@@ -72,7 +72,7 @@ public class MainWindow : Window
         );
     }        
 
-    public ControlTemplate BuildButtonTemplate()
+    private ControlTemplate BuildButtonTemplate()
     {
         var visualTree = FrameworkElementFactoryX<Border>(
             name: "PART_Border",

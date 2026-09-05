@@ -17,7 +17,7 @@ public class MainWindow : Window
         Content = Build();
     }
 
-    public UIElement Build()
+    private UIElement Build()
     {
         return StackPanelX(
             children: [
@@ -43,7 +43,7 @@ public class MainWindow : Window
                 ),
                 ButtonX(
                     configure: x => {
-                        x.Style = Application.Current.TryFindResource("PrimaryButton") as Style;
+                        x.Style = TryFindResource("PrimaryButton") as Style;
                         x.Content = "Click me with Primary Button style";
                         x.Margin = ThicknessX(10);
                         x.Padding = ThicknessX(10);
