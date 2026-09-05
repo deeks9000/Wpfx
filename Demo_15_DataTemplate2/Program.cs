@@ -17,7 +17,6 @@ public static class Program
 
         var app = new Application();
 
-        //var win = new MainWindow();
         var win = sp.GetRequiredService<MainWindow>();
 
         app.Run(win);
