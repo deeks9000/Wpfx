@@ -26,7 +26,7 @@ public class MainWindow : Window
     private void InitializeEventTriggerAnimations()
     {
         NameScope.SetNameScope(this, new NameScope());
-        RegisterName("AnimatedBrush", animatedBrush);        
+        RegisterName("AnimatedBrush", animatedBrush);
 
         upColorAnimation.To = Colors.DarkOrange;
         upColorAnimation.Duration = TimeSpan.FromMilliseconds(200);
@@ -37,7 +37,7 @@ public class MainWindow : Window
         downColorAnimation.Duration = TimeSpan.FromMilliseconds(1000);
         Storyboard.SetTargetName(downColorAnimation, "AnimatedBrush");
         Storyboard.SetTargetProperty(downColorAnimation, new PropertyPath(SolidColorBrush.ColorProperty));
-    }        
+    }
 
     private UIElement Build()
     {
@@ -48,7 +48,7 @@ public class MainWindow : Window
                 x.AddRow();
                 x.AddRow();
             },
-            children: [                
+            children: [
                 ButtonX(
                     configure: x => {
                         Grid.SetRow(x, 0);
@@ -59,7 +59,7 @@ public class MainWindow : Window
                         x.VerticalAlignment = VerticalAlignment.Center;
                         x.Style = BuildButtonTriggerStyle();
                     }
-                ),                               
+                ),
                 ButtonX(
                     configure: x => {
                         Grid.SetRow(x, 1);
@@ -70,7 +70,7 @@ public class MainWindow : Window
                         x.VerticalAlignment = VerticalAlignment.Center;
                         x.Style = BuildButtonMultiTriggerStyle();
                     }
-                ),                                
+                ),
                 ButtonX(
                     configure: x => {
                         Grid.SetRow(x, 2);
@@ -81,7 +81,7 @@ public class MainWindow : Window
                         x.VerticalAlignment = VerticalAlignment.Center;
                         x.Style = BuildButtonEventTriggerStyle();
                     }
-                ),                               
+                ),
                 ButtonX(
                     configure: x => {
                         Grid.SetRow(x, 3);
@@ -147,7 +147,7 @@ public class MainWindow : Window
                 )
             ]
         );
-    }      
+    }
 
     public Style BuildButtonTriggerStyle()
     {
@@ -203,7 +203,7 @@ public class MainWindow : Window
                     ]
                 ),
             ]
-        );       
+        );
     }
 
     public Style BuildButtonEventTriggerStyle()

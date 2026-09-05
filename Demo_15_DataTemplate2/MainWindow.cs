@@ -45,7 +45,7 @@ public class MainWindow : Window
                                 x.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                                 x.HorizontalAlignment = HorizontalAlignment.Stretch;
                                 x.BorderThickness = ThicknessX(0);
-                                x.SetBinding(ListBox.SelectedItemProperty, BindingX(nameof(vm.SelectedCat)));                             
+                                x.SetBinding(ListBox.SelectedItemProperty, BindingX(nameof(vm.SelectedCat)));
                             }
                         )
                     ]
@@ -150,7 +150,7 @@ public class MainWindow : Window
         );
 
         var dataTemplate = DataTemplateX<Cat>(visualTree);
-                      
+
         return dataTemplate;
     }
 }

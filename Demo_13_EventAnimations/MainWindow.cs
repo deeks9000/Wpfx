@@ -23,7 +23,7 @@ public class MainWindow : Window
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         Width = 800;
         Height = 600;
-        Content = Build();       
+        Content = Build();
     }
 
     private void InitializeEventAnimations()

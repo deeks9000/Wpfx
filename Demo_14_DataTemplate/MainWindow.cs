@@ -45,12 +45,12 @@ public class MainWindow : Window
                                 x.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                                 x.HorizontalAlignment = HorizontalAlignment.Stretch;
                                 x.BorderThickness = ThicknessX(0);
-                                x.SetBinding(ListBox.SelectedItemProperty, BindingX(nameof(vm.SelectedPerson)));                             
+                                x.SetBinding(ListBox.SelectedItemProperty, BindingX(nameof(vm.SelectedPerson)));
                             }
                         )
                     ]
                 ),
-                BuildGridSplitter(column: 1),               
+                BuildGridSplitter(column: 1),
                 BuildPersonDetails(column: 2)
             ]
         );
@@ -225,5 +225,5 @@ public class MainWindow : Window
         var dataTemplate = DataTemplateX<Person>(visualTree);
 
         return dataTemplate;
-    }      
+    }
 }
