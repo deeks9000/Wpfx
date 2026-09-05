@@ -187,7 +187,6 @@ public class MainWindow : Window
                 SetterX(Border.MarginProperty, ThicknessX(2,5,2,5)),
                 SetterX(Border.PaddingProperty, ThicknessX(10)),
                 SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
-
                 SetterX(Border.BackgroundProperty, BindingX(b => {
                     b.Path = new PropertyPath(nameof(ListBoxItem.IsSelected));
                     b.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(ListBoxItem), 1);
