@@ -74,13 +74,11 @@ public class MainWindow : Window
                 x.SnapsToDevicePixels = true;
 
                 x.MouseEnter += (s, e) => {
-                    var gs = s as GridSplitter;
-                    gs?.Background = Brushes.CornflowerBlue;
+                    x.Background = Brushes.CornflowerBlue;
                 };
 
                 x.MouseLeave += (s, e) => {
-                    var gs = s as GridSplitter;
-                    gs?.Background = Brushes.White;
+                    x.Background = Brushes.White;
                 };
             }
         );
@@ -119,8 +117,8 @@ public class MainWindow : Window
                 SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
                 SetterX(Border.BackgroundProperty, BindingX(b => {
                     b.Path = PropertyPathX(nameof(ListBoxItem.IsSelected));
-                    b.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(ListBoxItem), 1);
-                    b.Converter = new IsSelectedBackgroundConverter();
+                    b.RelativeSource = RelativeSourceX(RelativeSourceMode.FindAncestor, typeof(ListBoxItem));
+                    b.Converter = IsSelectedBrushConverter.Instance;
                 }))
             ],
             children: [
@@ -133,7 +131,7 @@ public class MainWindow : Window
                             setters: [
                                 SetterX(TextBlock.FontWeightProperty, FontWeights.Bold),
                                 SetterX(TextBlock.TextProperty, BindingX(b => {
-                                    b.Path = new PropertyPath(nameof(Cat.Type));
+                                    b.Path = PropertyPathX(nameof(Cat.Type));
                                     b.StringFormat = "Type: {0}";
                                 }))
                             ]
@@ -143,7 +141,7 @@ public class MainWindow : Window
                                 SetterX(TextBlock.FontSizeProperty, 12.0),
                                 SetterX(TextBlock.ForegroundProperty, Brushes.Gray),
                                 SetterX(TextBlock.TextProperty, BindingX(b => {
-                                    b.Path = new PropertyPath(nameof(Cat.Name));
+                                    b.Path = PropertyPathX(nameof(Cat.Name));
                                     b.StringFormat = "Name: {0}";
                                 }))
                             ]
