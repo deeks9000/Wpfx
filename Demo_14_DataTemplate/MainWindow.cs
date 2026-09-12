@@ -74,13 +74,11 @@ public class MainWindow : Window
                 x.SnapsToDevicePixels = true;
 
                 x.MouseEnter += (s, e) => {
-                    var gs = s as GridSplitter;
-                    gs?.Background = Brushes.CornflowerBlue;
+                    x.Background = Brushes.CornflowerBlue;
                 };
 
                 x.MouseLeave += (s, e) => {
-                    var gs = s as GridSplitter;
-                    gs?.Background = Brushes.White;
+                    x.Background = Brushes.White;
                 };
             }
         );
@@ -97,7 +95,6 @@ public class MainWindow : Window
                 x.AddRow(GridUnitType.Auto);
                 x.AddRow(GridUnitType.Auto);
                 x.AddRow(GridUnitType.Auto);
-                x.AddRow();
                 x.AddColumn(GridUnitType.Auto);
                 x.AddColumn();
             },
@@ -184,7 +181,7 @@ public class MainWindow : Window
             ]
         );
     }
-     
+       
     private DataTemplate BuildPersonDataTemplate()
     {
         var visualTree = FrameworkElementFactoryX<Border>(
@@ -193,19 +190,32 @@ public class MainWindow : Window
                 SetterX(Border.PaddingProperty, ThicknessX(10)),
                 SetterX(Border.CornerRadiusProperty, CornerRadiusX(4)),
                 SetterX(Border.BackgroundProperty, BindingX(b => {
-                    b.Path = new PropertyPath(nameof(ListBoxItem.IsSelected));
-                    b.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(ListBoxItem), 1);
-                    b.Converter = new IsSelectedBackgroundConverter();
+                    b.Path = PropertyPathX(nameof(ListBoxItem.IsSelected));
+                    b.RelativeSource = RelativeSourceX(RelativeSourceMode.FindAncestor, typeof(ListBoxItem));
+                    b.Converter = IsSelectedBrushConverter.Instance;
                 }))
             ],
             children: [
-                FrameworkElementFactoryX<StackPanel>(
-                    setters: [
-                        SetterX(StackPanel.OrientationProperty, Orientation.Vertical)
-                    ],
+                FrameworkElementFactoryX<Grid>(
                     children: [
+                        FrameworkElementFactoryX<RowDefinition>(
+                            setters: [
+                                SetterX(RowDefinition.HeightProperty, GridLengthX(GridUnitType.Star, 1))
+                            ]
+                        ),
+                        FrameworkElementFactoryX<RowDefinition>(
+                            setters: [
+                                SetterX(RowDefinition.HeightProperty, GridLengthX(GridUnitType.Star, 1))
+                            ]
+                        ),
+                        FrameworkElementFactoryX<RowDefinition>(
+                            setters: [
+                                SetterX(RowDefinition.HeightProperty, GridLengthX(GridUnitType.Star, 1))
+                            ]
+                        ),
                         FrameworkElementFactoryX<TextBlock>(
                             setters: [
+                                SetterX(Grid.RowProperty, 0),
                                 SetterX(TextBlock.FontWeightProperty, FontWeights.Bold),
                                 SetterX(TextBlock.TextProperty, MultiBindingX(mb => {
                                     mb.Bindings.Add(BindingX(nameof(Person.FirstName)));
@@ -216,9 +226,19 @@ public class MainWindow : Window
                         ),
                         FrameworkElementFactoryX<TextBlock>(
                             setters: [
+                                SetterX(Grid.RowProperty, 1),
                                 SetterX(TextBlock.FontSizeProperty, 12.0),
                                 SetterX(TextBlock.ForegroundProperty, Brushes.Gray),
                                 SetterX(TextBlock.TextProperty, BindingX(nameof(Person.Email)))
+                            ]
+                        ),
+                        FrameworkElementFactoryX<TextBlock>(
+                            setters: [
+                                SetterX(Grid.RowProperty, 2),
+                                SetterX(TextBlock.FontSizeProperty, 12.0),
+                                SetterX(TextBlock.FontStyleProperty, FontStyles.Italic),
+                                SetterX(TextBlock.ForegroundProperty, Brushes.MediumPurple),
+                                SetterX(TextBlock.TextProperty, BindingX(nameof(Person.Code)))
                             ]
                         )
                     ]

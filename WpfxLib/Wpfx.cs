@@ -15,15 +15,8 @@ public static class Wpfx
     {
         var grid = new Grid();
 
-        var items = children ?? Array.Empty<UIElement>();
-
-        for (int i = 0; i < items.Length; i++)
+        foreach (var child in children ?? Array.Empty<UIElement>())
         {
-            var child = items[i];
-
-            if (child == null)
-                continue;
-
             grid.Children.Add(child);
         }
 
@@ -213,8 +206,7 @@ public static class Wpfx
     public static Brush BrushFromStringX(string str)
     {
         Color color = (Color)ColorConverter.ConvertFromString(str);
-        Brush brush = new SolidColorBrush(color);
-        return brush;
+        return new SolidColorBrush(color);        
     }
 
     public static Brush BrushX(byte red, byte green, byte blue)
@@ -243,6 +235,20 @@ public static class Wpfx
 
     public static PropertyPath PropertyPathX(string path, params object[] pathParameters) => new PropertyPath(path, pathParameters);
 
+    public static RelativeSource RelativeSourceX(RelativeSourceMode mode, Type? ancestorType = null, int? ancestorLevel = null)
+    {
+        var relativeSource = new RelativeSource(mode);
+
+        if (ancestorType != null)
+            relativeSource.AncestorType = ancestorType;
+
+        // DEFAULT: relativeSource.AncestorLevel == 1 (the nearest matching ancestor)
+        if (ancestorLevel.HasValue)
+            relativeSource.AncestorLevel = ancestorLevel.Value;
+
+        return relativeSource;
+    }
+
     public static Binding BindingX(string path) => new Binding(path);
 
     public static Binding BindingX(Action<Binding>? configure = null)
@@ -270,12 +276,9 @@ public static class Wpfx
             VisualTree = visualTree
         };
 
-        if (triggers != null)
+        foreach (var trigger in triggers ?? Array.Empty<Trigger>())
         {
-            foreach (var trigger in triggers)
-            {
-                template.Triggers.Add(trigger);
-            }
+            template.Triggers.Add(trigger);
         }
 
         return template;
@@ -289,20 +292,14 @@ public static class Wpfx
     {
         var style = new Style(typeof(T), basedOn);
 
-        if (setters != null)
+        foreach (var setter in setters ?? Array.Empty<Setter>())
         {
-            foreach (var setter in setters)
-            {
-                style.Setters.Add(setter);
-            }
+            style.Setters.Add(setter);
         }
 
-        if (triggers != null)
+        foreach (var trigger in triggers ?? Array.Empty<TriggerBase>())
         {
-            foreach (var trigger in triggers)
-            {
-                style.Triggers.Add(trigger);
-            }
+            style.Triggers.Add(trigger);
         }
 
         return style;
@@ -318,12 +315,9 @@ public static class Wpfx
             Value = value 
         };
        
-        if (setters != null)
+        foreach (var setter in setters ?? Array.Empty<Setter>())
         {
-            foreach (var setter in setters)
-            {
-                trigger.Setters.Add(setter);
-            }
+            trigger.Setters.Add(setter);
         }
 
         return trigger;
@@ -344,20 +338,14 @@ public static class Wpfx
     {
         var mulitTrigger = new MultiTrigger();
 
-        if (conditions != null)
+        foreach (var condition in conditions ?? Array.Empty<Condition>())
         {
-            foreach (var condition in conditions)
-            {
-                mulitTrigger.Conditions.Add(condition);
-            }
+            mulitTrigger.Conditions.Add(condition);
         }
 
-        if (setters != null)
+        foreach (var setter in setters ?? Array.Empty<Setter>())
         {
-            foreach (var setter in setters)
-            {
-                mulitTrigger.Setters.Add(setter);
-            }
+            mulitTrigger.Setters.Add(setter);
         }
 
         return mulitTrigger;
@@ -367,12 +355,9 @@ public static class Wpfx
     {
         var trigger = new EventTrigger(routedEvent);
 
-        if (actions != null)
+        foreach (var action in actions ?? Array.Empty<TriggerAction>())
         {
-            foreach (var action in actions)
-            {
-                trigger.Actions.Add(action);
-            }
+            trigger.Actions.Add(action);
         }
 
         return trigger;
@@ -417,14 +402,10 @@ public static class Wpfx
         };
 
         if (targetName != null)
-        {
             Storyboard.SetTargetName(doubleAnimation, targetName);
-        }
 
         if (targetProperty != null)
-        {
             Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(targetProperty));
-        }
 
         return doubleAnimation;
     }
@@ -434,10 +415,9 @@ public static class Wpfx
         var template = new ControlTemplate(typeof(T));
         template.VisualTree = visualTree;
 
-        if (triggers != null)
+        foreach (var t in triggers ?? Array.Empty<Trigger>())
         {
-            foreach (var t in triggers)
-                template.Triggers.Add(t);
+            template.Triggers.Add(t);
         }
 
         return template;
@@ -446,23 +426,21 @@ public static class Wpfx
     // Use in a ControlTemplate visual tree to bind to the templated parent
     public static TemplateBindingExtension TemplateBindingX(DependencyProperty property) => new TemplateBindingExtension(property);
 
-    public static FrameworkElementFactory FrameworkElementFactoryX<T>(string? name = null, Setter[]? setters = null, FrameworkElementFactory[]? children = null) where T : FrameworkElement
+    public static FrameworkElementFactory FrameworkElementFactoryX<T>(string? name = null, Setter[]? setters = null, FrameworkElementFactory[]? children = null) where T : DependencyObject
     {
         var factory = new FrameworkElementFactory(typeof(T));
 
         if (name != null)
             factory.Name = name;
 
-        if (setters != null)
+        foreach (var s in setters ?? Array.Empty<Setter>())
         {
-            foreach (var s in setters)
-                factory.SetValue(s.Property, s.Value);
+            factory.SetValue(s.Property, s.Value);
         }
 
-        if (children != null)
+        foreach (var c in children ?? Array.Empty<FrameworkElementFactory>())
         {
-            foreach (var c in children)
-                factory.AppendChild(c);
+            factory.AppendChild(c);
         }
 
         return factory;

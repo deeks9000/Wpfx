@@ -27,59 +27,62 @@ public class MainWindow : Window
                 GridX(
                     configure: x => {
                         Grid.SetColumn(x, 0);
+                        x.SnapsToDevicePixels = true;
                         x.AddRow();
                         x.AddRow(GridUnitType.Auto);
                         x.AddRow();
                     },
                     children: [
-                        BorderX(
+                        GridX(
                             configure: x => {
                                 Grid.SetRow(x, 0);
                                 x.Background = Brushes.LightSkyBlue;
                                 x.SnapsToDevicePixels = true;
                             },
-                            child: TextBlockX(
-                                configure: x => {
-                                    x.HorizontalAlignment = HorizontalAlignment.Center;
-                                    x.VerticalAlignment = VerticalAlignment.Center;
-                                    x.Text = "Left-Top area";
-                                }
-                            )
+                            children: [
+                                TextBlockX(
+                                    configure: x => {
+                                        x.HorizontalAlignment = HorizontalAlignment.Center;
+                                        x.VerticalAlignment = VerticalAlignment.Center;
+                                        x.Text = "Left-Top area";
+                                    }
+                                )
+                            ]
                         ),
                         GridSplitterX(
                             configure: x => {
                                 Grid.SetRow(x, 1);
                                 x.Background = Brushes.White;
-                                x.Height = 4;
+                                x.Height = 5;
                                 x.HorizontalAlignment = HorizontalAlignment.Stretch;
                                 x.VerticalAlignment = VerticalAlignment.Stretch;
                                 x.ResizeBehavior = GridResizeBehavior.PreviousAndNext;
                                 x.SnapsToDevicePixels = true;
 
                                 x.MouseEnter += (s,e) => {
-                                    var gs = s as GridSplitter;
-                                    gs?.Background = Brushes.CornflowerBlue;
+                                    x.Background = Brushes.CornflowerBlue;
                                 };
 
                                 x.MouseLeave += (s,e) => {
-                                    var gs = s as GridSplitter;
-                                    gs?.Background = Brushes.White;
+                                    x.Background = Brushes.White;
                                 };
                             }
                         ),
-                        BorderX(
+                        GridX(
                             configure: x => {
                                 Grid.SetRow(x, 2);
                                 x.Background = Brushes.LightSkyBlue;
                                 x.SnapsToDevicePixels = true;
                             },
-                            child: TextBlockX(
-                                configure: x => {
-                                    x.HorizontalAlignment = HorizontalAlignment.Center;
-                                    x.VerticalAlignment = VerticalAlignment.Center;
-                                    x.Text = "Left-Bottom area";
-                                }
-                            )
+                            children: [
+                                TextBlockX(
+                                    configure: x => {
+                                        x.HorizontalAlignment = HorizontalAlignment.Center;
+                                        x.VerticalAlignment = VerticalAlignment.Center;
+                                        x.Text = "Left-Bottom area";
+                                    }
+                                )
+                            ]
                         ),
                     ]
                 ),
@@ -87,36 +90,36 @@ public class MainWindow : Window
                     configure: x => {
                         Grid.SetColumn(x, 1);
                         x.Background = Brushes.White;
-                        x.Width = 4;
+                        x.Width = 5;
                         x.HorizontalAlignment = HorizontalAlignment.Stretch;
                         x.VerticalAlignment = VerticalAlignment.Stretch;
                         x.ResizeBehavior = GridResizeBehavior.PreviousAndNext;
                         x.SnapsToDevicePixels = true;
 
                         x.MouseEnter += (s,e) => {
-                            var gs = s as GridSplitter;
-                            gs?.Background = Brushes.CornflowerBlue;
+                            x.Background = Brushes.CornflowerBlue;
                         };
-                        
+
                         x.MouseLeave += (s,e) => {
-                            var gs = s as GridSplitter;
-                            gs?.Background = Brushes.White;
+                            x.Background = Brushes.White;
                         };
                     }
                 ),
-                BorderX(
+                GridX(
                     configure: x => {
                         Grid.SetColumn(x, 2);
                         x.Background = Brushes.LightBlue;
                         x.SnapsToDevicePixels = true;
                     },
-                    child: TextBlockX(
-                        configure: x => {
-                            x.HorizontalAlignment = HorizontalAlignment.Center;
-                            x.VerticalAlignment = VerticalAlignment.Center;
-                            x.Text = "Main area";
-                        }
-                    )
+                    children: [
+                        TextBlockX(
+                            configure: x => {
+                                x.HorizontalAlignment = HorizontalAlignment.Center;
+                                x.VerticalAlignment = VerticalAlignment.Center;
+                                x.Text = "Main area";
+                            }
+                        )
+                    ]
                 )
             ]
         );
