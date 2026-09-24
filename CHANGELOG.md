@@ -17,9 +17,9 @@ All notable changes to this project are documented here.
 
 ### Highlights
 - `DataTemplate` demo apps: `Demo_14_DataTemplate` & `Demo_15_DataTemplate2`
-- Better organise and easier to read fragments of UI sections with their own `BuildXyz()` function, called from within the main UI tree
+- Better organised and easier to read fragments of UI sections with their own `BuildXyz()` function, called from within the main UI tree
 - Simplify the Triggers / EventAnimations demo apps 
-- Improved local window resources with strong type returning functions rather than use a local `ResourceDictionary`
+- Improve local window resources with strong type returning functions rather than use a local `ResourceDictionary`
 
 ### Features
 - WPFX: Add `DataTemplateX`
