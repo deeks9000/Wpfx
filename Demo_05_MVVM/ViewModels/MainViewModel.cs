@@ -9,7 +9,10 @@ public class MainViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private int _counter = 0;
+    private int _count = 0;
+    private int _nameIndex = 0;
+
+    private string _text = string.Empty;
     private string _message = string.Empty;
     private string _firstName = string.Empty;
     private string _middleName = string.Empty;
@@ -20,9 +23,9 @@ public class MainViewModel : INotifyPropertyChanged
     {
         Message = $"The button has not been clicked";
 
-        FirstName = "AMAZE";
-        MiddleName = "AMAZE";
-        LastName = "AMAZE";
+        FirstName = "Amaze";
+        MiddleName = "Amaze";
+        LastName = "Amaze";
 
         SelectedCat = new Cat
         {
@@ -31,14 +34,33 @@ public class MainViewModel : INotifyPropertyChanged
             ImageUrl = "https://raw.githubusercontent.com/deeks9000/app-assets/main/cats/british_shorthair.jpg"
         };
 
-        UpdateMessage = new AsyncCommand(
-            execute: async () => await UpdateMessageAsync(),
+        UpdateCountCommand = new AsyncCommand(
+            execute: async () => await UpdateCountAsync(),
+            onError: ex => System.Diagnostics.Debug.WriteLine($"Command error: {ex.Message}")
+        );
+
+        AddTextCommand = new AsyncCommand(
+            execute: async () => await AddTextAsync(),
             onError: ex => System.Diagnostics.Debug.WriteLine($"Command error: {ex.Message}")
         );
     }
 
     //---------------------------------------------
     // PROPERTIES
+
+    public string Text
+    {
+        get => _text;
+
+        set
+        {
+            if (_text != value)
+            {
+                _text = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     public string Message
     {
@@ -113,18 +135,54 @@ public class MainViewModel : INotifyPropertyChanged
     //---------------------------------------------
     // COMMANDS
 
-    public ICommand UpdateMessage { get; }
+    public ICommand UpdateCountCommand { get; }
 
-    private async Task UpdateMessageAsync()
+    public ICommand AddTextCommand { get; }
+
+
+    //---------------------------------------------
+    // COMMAND Methods
+
+    private async Task UpdateCountAsync()
     {
         await Task.CompletedTask;
 
-        _counter += 1;
+        _count += 1;
 
-        Message = _counter > 1
-            ? $"The button was clicked {_counter} times"
+        Message = _count > 1
+            ? $"The button was clicked {_count} times"
             : "The button was clicked";
     }
+
+    private async Task AddTextAsync()
+    {
+        await Task.CompletedTask;
+
+        string txt = Text;
+
+        int residue = _nameIndex % 3;
+
+        if (residue == 0)
+        {
+            FirstName = txt;
+            _nameIndex++;
+        }
+        else if (residue == 1)
+        { 
+            MiddleName = txt;
+            _nameIndex++;
+        }
+        else // residue = 2, or other
+        {
+            LastName = txt;
+            _nameIndex = 0;
+        }        
+
+        Text = string.Empty;
+    }
+
+    //---------------------------------------------
+    // Events
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
@@ -265,6 +266,12 @@ public static class Wpfx
         return multiBinding;
     }
 
+    public static KeyBinding KeyBindingX(Action<KeyBinding> configure)
+    {
+        var keyBinding = new KeyBinding();
+        configure(keyBinding);
+        return keyBinding;
+    }
 
     //------------------------------------------------------------
     // DATA TEMPLATE
