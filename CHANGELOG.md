@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## 0.1.0-alpha.13 — 2026-09-27
+
+### Highlights
+- `Demo_05_MVVM`: Demonstrate a `TextBox` `KeyBinding` that executes a ViewModel command when the **Enter** key is pressed
+
+### Features
+- WPFX: Add `KeyBindingX` helper
+
 ## 0.1.0-alpha.12 — 2026-09-12
 
 ### Highlights
