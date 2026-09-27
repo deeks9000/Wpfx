@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Demo_05_MVVM;
@@ -27,6 +29,7 @@ public class MainWindow : Window
                 x.AddRow(GridUnitType.Auto);
                 x.AddRow(GridUnitType.Auto);
                 x.AddRow(GridUnitType.Auto);
+                x.AddRow(GridUnitType.Auto);
                 x.AddRow();
             },
             children: [
@@ -37,12 +40,12 @@ public class MainWindow : Window
                     },
                     child: ButtonX(
                         configure: x => {
-                            x.Content = "Update message";
+                            x.Content = "Update";
                             x.Margin = ThicknessX(10);
                             x.Padding = ThicknessX(10);
                             x.HorizontalAlignment = HorizontalAlignment.Left;
                             x.VerticalAlignment = VerticalAlignment.Center;
-                            x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.UpdateMessage)));
+                            x.SetBinding(Button.CommandProperty, BindingX(nameof(vm.UpdateCountCommand)));
                         }
                     )
                 ),
@@ -68,10 +71,59 @@ public class MainWindow : Window
                 BorderX(
                     configure: x => {
                         Grid.SetRow(x, 2);
-                        x.Background = Brushes.LightBlue;
+                        x.Background = Brushes.Azure;
+                    },
+                    child: StackPanelX(
+                        configure: x => {
+                            x.Orientation = Orientation.Horizontal;
+                        },
+                        children: [
+                            LabelX(
+                                configure: x => {
+                                    x.Content = "KeyBinding demo:";
+                                    x.VerticalContentAlignment = VerticalAlignment.Center;
+                                    x.Margin = ThicknessX(10,10,0,10);
+                                    x.FontWeight = FontWeights.Bold;
+                                }
+                            ),
+                            TextBoxX(
+                                configure: x => {
+                                    x.FontFamily = new FontFamily("Consolas");
+                                    x.VerticalContentAlignment = VerticalAlignment.Center;
+                                    x.FontSize = 18;
+                                    x.Margin = ThicknessX(10,10,0,10);
+                                    x.Width = 200;
+ 
+                                    x.SetBinding(TextBox.TextProperty, BindingX(b => {
+                                        b.Path = PropertyPathX(nameof(vm.Text));
+                                        b.Mode = BindingMode.TwoWay;
+                                        b.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                                    }));
+
+                                    x.InputBindings.Add(KeyBindingX(kb => {
+                                        kb.Key = Key.Enter;
+                                        kb.Command = vm.AddTextCommand;
+                                    }));
+                                }
+                            ),
+                            LabelX(
+                                configure: x => {
+                                    x.Content = "(Insert text, then press ENTER key)";
+                                    x.VerticalContentAlignment = VerticalAlignment.Center;
+                                    x.Margin = ThicknessX(10,10,0,10);
+                                }
+                            ),
+                        ]
+                    )
+                ),
+                BorderX(
+                    configure: x => {
+                        Grid.SetRow(x, 3);
+                        x.Background = Brushes.LightSkyBlue;
                     },
                     child: TextBoxX(
                         configure: x => {
+                            x.FontFamily = new FontFamily("Consolas");
                             x.Background = Brushes.Transparent;
                             x.IsReadOnly = true;
                             x.TextWrapping = TextWrapping.Wrap;
@@ -84,14 +136,14 @@ public class MainWindow : Window
                                 mb.Bindings.Add(BindingX(nameof(vm.FirstName)));
                                 mb.Bindings.Add(BindingX(nameof(vm.MiddleName)));
                                 mb.Bindings.Add(BindingX(nameof(vm.LastName)));
-                                mb.StringFormat = "First: {0}, Middle: {1}, Last: {2}";
+                                mb.StringFormat = "FIRST: {0}, MIDDLE: {1}, LAST: {2}";
                             }));
                         }
                     )
                 ),
                 BorderX(
                     configure: x => {
-                        Grid.SetRow(x, 3);
+                        Grid.SetRow(x, 4);
                         x.Background = Brushes.LightYellow;
                         x.BorderBrush = Brushes.Gold;
                         x.BorderThickness= ThicknessX(4);
@@ -117,7 +169,7 @@ public class MainWindow : Window
                 ),
                 BorderX(
                     configure: x => {
-                        Grid.SetRow(x, 4);
+                        Grid.SetRow(x, 5);
                         x.Background = Brushes.Azure;
                     },
                     child: ImageX(
