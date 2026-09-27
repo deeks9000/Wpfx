@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## 0.1.0-alpha.13 — 2026-09-27
+
+### Highlights
+- `Demo_05_MVVM`: Demonstrate a `TextBox` `KeyBinding` that executes a ViewModel command when the **Enter** key is pressed
+
+### Features
+- WPFX: Add `KeyBindingX` helper
+
 ## 0.1.0-alpha.12 — 2026-09-12
 
 ### Highlights
@@ -17,9 +25,9 @@ All notable changes to this project are documented here.
 
 ### Highlights
 - `DataTemplate` demo apps: `Demo_14_DataTemplate` & `Demo_15_DataTemplate2`
-- Better organise and easier to read fragments of UI sections with their own `BuildXyz()` function, called from within the main UI tree
+- Better organised and easier to read fragments of UI sections with their own `BuildXyz()` function, called from within the main UI tree
 - Simplify the Triggers / EventAnimations demo apps 
-- Improved local window resources with strong type returning functions rather than use a local `ResourceDictionary`
+- Improve local window resources with strong type returning functions rather than use a local `ResourceDictionary`
 
 ### Features
 - WPFX: Add `DataTemplateX`

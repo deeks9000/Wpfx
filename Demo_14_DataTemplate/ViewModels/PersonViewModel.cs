@@ -26,7 +26,7 @@ public class PersonViewModel : INotifyPropertyChanged
             new Person { FirstName = "Harry", LastName="Potter", Email = "harry@owlmail.net", Code = "9 3/4", Department="Hogwarts" },
             new Person { FirstName = "Albus", LastName="Dumbledore", Email = "albus@owlmail.net", Code = "Phoenix", Department="Hogwarts" },
             new Person { FirstName = "Wednesday", LastName="Addams", Email = "wednesday@spooky.com", Code = "Thing", Department="Gothic" },
-            new Person { FirstName = "Henry", LastName="Jones", Email = "henry@marshal.org", Code = "Indianna", Department="Archaeology" },
+            new Person { FirstName = "Henry", LastName="Jones", Email = "henry@marshal.org", Code = "Indiana", Department="Archaeology" },
             new Person { FirstName = "Charles", LastName="Xavier", Email = "charles@x.com", Code = "X", Department="Mutation" },
             new Person { FirstName = "Peter", LastName="Venkman", Email = "peter@ghostbusters.com", Code = "PK", Department="Paranormal" },
             new Person { FirstName = "Harley", LastName="Quinn", Email = "harley@squad.net", Code = "DC", Department="Comics" },
