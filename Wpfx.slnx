@@ -14,5 +14,6 @@
   <Project Path="Demo_13_EventAnimations/Demo_13_EventAnimations.csproj" />
   <Project Path="Demo_14_DataTemplate/Demo_14_DataTemplate.csproj" />
   <Project Path="Demo_15_DataTemplate2/Demo_15_DataTemplate2.csproj" />
+  <Project Path="Demo_16_DynamicContent/Demo_16_DynamicContent.csproj" />
   <Project Path="WpfxLib/WpfxLib.csproj" />
 </Solution>

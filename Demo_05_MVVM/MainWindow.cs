@@ -88,7 +88,7 @@ public class MainWindow : Window
                             ),
                             TextBoxX(
                                 configure: x => {
-                                    x.FontFamily = new FontFamily("Consolas");
+                                    x.FontFamily = FontFamilyX("Consolas");
                                     x.VerticalContentAlignment = VerticalAlignment.Center;
                                     x.FontSize = 18;
                                     x.Margin = ThicknessX(10,10,0,10);
@@ -123,7 +123,7 @@ public class MainWindow : Window
                     },
                     child: TextBoxX(
                         configure: x => {
-                            x.FontFamily = new FontFamily("Consolas");
+                            x.FontFamily = FontFamilyX("Consolas");
                             x.Background = Brushes.Transparent;
                             x.IsReadOnly = true;
                             x.TextWrapping = TextWrapping.Wrap;

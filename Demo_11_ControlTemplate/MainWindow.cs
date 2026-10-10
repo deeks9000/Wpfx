@@ -46,7 +46,7 @@ public class MainWindow : Window
                     configure: x => { 
                         _txtInfo = x; 
                         x.Text = "Count: 0"; 
-                        x.Margin = new Thickness(10);
+                        x.Margin = ThicknessX(10);
                     }
                 ),
                 ButtonX(

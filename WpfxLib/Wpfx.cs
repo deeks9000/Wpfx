@@ -174,6 +174,8 @@ public static class Wpfx
            
     public static GridSplitter GridSplitterX(Action<GridSplitter>? configure = null) => FrameworkElementX(configure);
 
+    public static ContentControl ContentControlX(Action<ContentControl>? configure = null) => FrameworkElementX(configure);
+    
     public static CornerRadius CornerRadiusX(double uniformRadius) => new CornerRadius(uniformRadius);
 
     public static CornerRadius CornerRadiusX(double topLeft, double topRight, double bottomRight, double bottomLeft)
@@ -204,10 +206,16 @@ public static class Wpfx
 
     public static TransformGroup TransformGroupX() => new TransformGroup();
 
+    public static FontFamily FontFamilyX(string familyName)
+    {
+        var element = new FontFamily(familyName);
+        return element;
+    }
+
     public static Brush BrushFromStringX(string str)
     {
         Color color = (Color)ColorConverter.ConvertFromString(str);
-        return new SolidColorBrush(color);        
+        return new SolidColorBrush(color);
     }
 
     public static Brush BrushX(byte red, byte green, byte blue)
@@ -337,7 +345,7 @@ public static class Wpfx
             Property = property,
             Value = value
         };
-               
+
         return condition;
     }
 

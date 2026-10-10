@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## 0.1.0-alpha.14 — 2026-10-07
+
+### Highlights
+- Add `Demo_16_DynamicContent`, lazy-load and switch content layout using a `ContentControl` to host the UI sub-trees
+
+### Features
+- WPFX: Add `ContentControlX` and `FontFamilyX` helpers
+
 ## 0.1.0-alpha.13 — 2026-09-27
 
 ### Highlights
@@ -48,7 +56,7 @@ All notable changes to this project are documented here.
 - Add project: `Demo_12_Triggers`
 
 ### Features
-- WPFX: Add `StyleX` triggers, `EventTriggerX`, `BeginStoryBoardX`, `BeginAnimationX` etc 
+- WPFX: Add `StyleX` triggers, `EventTriggerX`, `BeginStoryboardX`, `BeginAnimationX` etc 
 
 
 ## 0.1.0-alpha.8 — 2026-08-06
