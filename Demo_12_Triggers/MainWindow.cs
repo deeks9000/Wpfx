@@ -153,7 +153,7 @@ public class MainWindow : Window
     {
         return StyleX<Button>(
             setters: [
-                SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
+                SetterX(Control.FontFamilyProperty, FontFamilyX("Times New Roman")),
                 SetterX(Control.FontSizeProperty, 18d),
             ],
             triggers: [
@@ -187,7 +187,7 @@ public class MainWindow : Window
     {
         return StyleX<Button>(
             setters: [
-                SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
+                SetterX(Control.FontFamilyProperty, FontFamilyX("Times New Roman")),
                 SetterX(Control.FontSizeProperty, 14d),
             ],
             triggers: [
@@ -210,7 +210,7 @@ public class MainWindow : Window
     {
         return StyleX<Button>(
             setters: [
-                SetterX(Control.FontFamilyProperty, new FontFamily("Times New Roman")),
+                SetterX(Control.FontFamilyProperty, FontFamilyX("Times New Roman")),
                 SetterX(Control.FontSizeProperty, 18d),
                 SetterX(Control.FontWeightProperty, FontWeights.Bold),
             ],

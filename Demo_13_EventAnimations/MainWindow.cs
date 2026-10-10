@@ -7,13 +7,13 @@ namespace Demo_13_EventAnimations;
 
 public class MainWindow : Window
 {
-    private Brush? textBrush;
-    private ColorAnimation? upTextColorAnimation;
-    private ColorAnimation? downTextColorAnimation;
-    private DoubleAnimation? upWidthDoubleAnimation;
-    private DoubleAnimation? downWidthDoubleAnimation;
-    private DoubleAnimation? upHeightDoubleAnimation;
-    private DoubleAnimation? downHeightDoubleAnimation;
+    private Brush? _textBrush;
+    private ColorAnimation? _upTextColorAnimation;
+    private ColorAnimation? _downTextColorAnimation;
+    private DoubleAnimation? _upWidthDoubleAnimation;
+    private DoubleAnimation? _downWidthDoubleAnimation;
+    private DoubleAnimation? _upHeightDoubleAnimation;
+    private DoubleAnimation? _downHeightDoubleAnimation;
 
     public MainWindow()
     {
@@ -28,34 +28,34 @@ public class MainWindow : Window
 
     private void InitializeEventAnimations()
     {
-        textBrush = new SolidColorBrush(Colors.Black);
+        _textBrush = new SolidColorBrush(Colors.Black);
 
-        upTextColorAnimation = new ColorAnimation {
+        _upTextColorAnimation = new ColorAnimation {
             To = Colors.DarkOrange,
             Duration = TimeSpan.FromMilliseconds(200)
         };
 
-        downTextColorAnimation = new ColorAnimation {
+        _downTextColorAnimation = new ColorAnimation {
             To = Colors.Black,
             Duration = TimeSpan.FromMilliseconds(2000)
         };
 
-        upWidthDoubleAnimation = new DoubleAnimation {
+        _upWidthDoubleAnimation = new DoubleAnimation {
             To = 400d,
             Duration = TimeSpan.FromMilliseconds(100)
         };
 
-        downWidthDoubleAnimation = new DoubleAnimation {
+        _downWidthDoubleAnimation = new DoubleAnimation {
             To = 300d,
             Duration = TimeSpan.FromMilliseconds(200)
         };
 
-        upHeightDoubleAnimation = new DoubleAnimation {
+        _upHeightDoubleAnimation = new DoubleAnimation {
             To = 80d,
             Duration = TimeSpan.FromMilliseconds(100)
         };
 
-        downHeightDoubleAnimation = new DoubleAnimation {
+        _downHeightDoubleAnimation = new DoubleAnimation {
             To = 40d,
             Duration = TimeSpan.FromMilliseconds(200)
         };
@@ -76,21 +76,21 @@ public class MainWindow : Window
                         x.VerticalAlignment = VerticalAlignment.Center;
                         x.Width = 300;
                         x.Height = 40;
-                        x.Foreground = textBrush;
+                        x.Foreground = _textBrush;
 
                         x.MouseEnter += (s,e) => {
-                            x.BeginAnimation(Button.WidthProperty, upWidthDoubleAnimation);
-                            x.BeginAnimation(Button.HeightProperty, upHeightDoubleAnimation);
+                            x.BeginAnimation(Button.WidthProperty, _upWidthDoubleAnimation);
+                            x.BeginAnimation(Button.HeightProperty, _upHeightDoubleAnimation);
                         };
 
                         x.MouseLeave += (s,e) => {
-                            x.BeginAnimation(Button.WidthProperty, downWidthDoubleAnimation);
-                            x.BeginAnimation(Button.HeightProperty, downHeightDoubleAnimation);
-                            textBrush?.BeginAnimation(SolidColorBrush.ColorProperty, downTextColorAnimation);
+                            x.BeginAnimation(Button.WidthProperty, _downWidthDoubleAnimation);
+                            x.BeginAnimation(Button.HeightProperty, _downHeightDoubleAnimation);
+                            _textBrush?.BeginAnimation(SolidColorBrush.ColorProperty, _downTextColorAnimation);
                         };
 
                         x.Click += (s,e) => {
-                            textBrush?.BeginAnimation(SolidColorBrush.ColorProperty, upTextColorAnimation);
+                            _textBrush?.BeginAnimation(SolidColorBrush.ColorProperty, _upTextColorAnimation);
                         };
                     }
                 )
