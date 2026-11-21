@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Demo_06_TwoWayMVVM.ViewModels;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
@@ -8,19 +9,19 @@ public class MainViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private string _message = string.Empty;
+    private string _text = string.Empty;
     
     public MainViewModel()
     {
-        Message = "Message text";
+        Text = "The quick brown fox jumps over the lazy dog.";
 
-        ClearMessage = new AsyncCommand(
-            execute: async () => await ClearMessageAsync(),
+        ClearTextCommand = new AsyncCommand(
+            execute: async () => await ClearTextAsync(),
             onError: ex => System.Diagnostics.Debug.WriteLine($"Command error: {ex.Message}")
         );
 
-        DefaultMessage = new AsyncCommand(
-            execute: async () => await DefaultMessageAsync(),
+        DefaultTextCommand = new AsyncCommand(
+            execute: async () => await DefaultTextAsync(),
             onError: ex => System.Diagnostics.Debug.WriteLine($"Command error: {ex.Message}")
         );
     }
@@ -28,15 +29,15 @@ public class MainViewModel : INotifyPropertyChanged
     //---------------------------------------------
     // PROPERTIES
 
-    public string Message
+    public string Text
     {
-        get => _message;
+        get => _text;
 
         set
         {
-            if (_message != value)
+            if (_text != value)
             {
-                _message = value;
+                _text = value;
                 OnPropertyChanged();
             }
         }
@@ -45,26 +46,26 @@ public class MainViewModel : INotifyPropertyChanged
     //---------------------------------------------
     // COMMANDS
 
-    public ICommand ClearMessage { get; }
+    public ICommand ClearTextCommand { get; }
 
-    public ICommand DefaultMessage { get; }
+    public ICommand DefaultTextCommand { get; }
 
-    private async Task ClearMessageAsync()
+    private async Task ClearTextAsync()
     {
         await Task.CompletedTask;
 
-        Message = string.Empty;
+        Text = string.Empty;
     }
 
-    private async Task DefaultMessageAsync()
+    private async Task DefaultTextAsync()
     {
         await Task.CompletedTask;
 
-        Message = "Hello Universe!";
+        Text = LoremIpsum.GetText();
     }
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }    
+    }
 }
